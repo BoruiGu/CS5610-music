@@ -1,0 +1,80 @@
+﻿/* Index */
+
+body {
+  padding-bottom: 70px;
+  padding-top: 70px;
+}
+
+.navbar-player{
+    height: 45px;
+    min-height: 45px;
+}
+
+.player-row{
+    height: inherit;
+}
+
+.playerWrap{
+    position: relative;
+    height: inherit;
+}
+
+.playerWrap .btn-Prev{    
+    position: absolute;
+    top: 50%;
+    /* This won't work as margin percentages 
+       are always calculated against width */
+    /*margin-top: -25%;*/
+    transform: translate(0, -50%);
+    left: 5px;
+}
+
+.playerWrap .btn-Play{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 40px;
+}
+
+.playerWrap .btn-Next{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 75px;
+}
+
+.playerWrap .bar-progress{
+    position: absolute;
+    left: 110px;
+    right: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.playerWrap .btn-volume{
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#volumeSlider{
+    position: absolute;
+    right: 0px;
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 100px;
+    top: -100px;
+    transform: translate(-50%, 0);
+}
+
+/* Search */
+
+.searchBoxWrap {
+    height: 34px; position: relative; z-index: 3
+}
+
+.searchSuggestion {
+    position: absolute; background: white
+}
