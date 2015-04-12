@@ -1,4 +1,4 @@
-﻿<div ng-controller="AlbumCtrl">
+﻿<div>
     <img src="{{album.images[1].url | cover}}" alt="Album Cover">
     <p>{{album.name}}</p>
     Artist
@@ -11,12 +11,7 @@
     Tracks
     <p ng-repeat="track in album.tracks.items">
         {{track.name}}
-        <div class="div-inline" ng-repeat="artist in track.artists">
-            <span>
-                {{artist.name}}
-                <span ng-if="!($last)">&amp;</span>
-            </span>
-        </div>
+		{{track.artists | artists}}
         {{album.name}}
     </p>
     Comments

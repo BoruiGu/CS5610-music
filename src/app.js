@@ -26,6 +26,10 @@ app.config(['$routeProvider',
             templateUrl: 'partial/artist/artist.html',
             controller: 'ArtistCtrl'
         }).
+        when('/register/:ref', {
+            templateUrl: 'partial/register/register.html',
+            controller: 'RegisterCtrl'
+        }).
         otherwise({
             redirectTo: '/'
         });

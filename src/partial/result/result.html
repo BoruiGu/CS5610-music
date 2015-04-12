@@ -1,4 +1,4 @@
-﻿<div ng-controller="ResultCtrl">
+﻿<div>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li ng-click="activeTag='song'" role="presentation" class="active"><a href="" aria-controls="home" role="tab" data-toggle="tab">Song</a></li>
@@ -28,12 +28,7 @@
                                 </td>
                                 <td class="col-md-3">
                                     <div class="result-overflow-hidden">
-                                        <div class="div-inline" ng-repeat="artist in track.artists">
-                                            <span>
-                                                {{artist.name}}
-                                                <span ng-if="!($last)">&amp;</span>
-                                            </span>
-                                        </div>
+                                        {{track.artists | artists}}
                                     </div>
                                 </td>
                                 <td class="col-md-3">
