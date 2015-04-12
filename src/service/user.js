@@ -5,6 +5,9 @@
             .success(function (response) {
                 $rootScope.currentUser = response;
                 callback(response);
+            })
+            .error(function (data, status) {
+                callback(status);
             });
         },
 

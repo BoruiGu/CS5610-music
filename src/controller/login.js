@@ -8,10 +8,18 @@
     });
 
     $scope.login = function (user) {
-        USER.login(user, function (currentUser) {
-            console.log(currentUser);
-            $scope.loggedin = true;
-            $state.go("search");
+        USER.login(user, function (response) {
+            if (typeof response === 'number') {
+                /* Error in Log In */                
+                alert("incorrect username or password. please try again");
+                /* Clear password */
+                user.password = null;
+            } else {
+                /* Logged In */
+                console.log(response);
+                $scope.loggedin = true;
+                $state.go("search");
+            }
         });
     };
 
