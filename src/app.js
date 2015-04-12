@@ -14,6 +14,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: 'partial/profile/profile.html',
             controller: 'ProfileCtrl'
         })
+        .state('myProfile', {
+            url: '/profile',
+            templateUrl: 'partial/profile/profile.html',
+            controller: 'ProfileCtrl',
+            resolve: {
+                loggedin: checkLoggedin
+            }
+        })
 		.state('result', {
 		    url: '/search/:query',
 		    views: {
@@ -50,3 +58,18 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             controller: 'RegisterCtrl'
         })
 }]);
+
+var checkLoggedin = function ($q, $timeout, $http, $state, $rootScope, USER) {
+    var deferred = $q.defer();
+
+    USER.loggedin(function (user) {
+        if (user !== '0') {
+            deferred.resolve();
+        } else {
+            deferred.reject();
+            $state.go('search');
+        }
+    });
+
+    return deferred.promise;
+};

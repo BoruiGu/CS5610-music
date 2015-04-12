@@ -13,8 +13,10 @@
     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>
 <script src="app.js"></script>
     <script src="service/api.js"></script>
+    <script src="service/user.js"></script>
     <script src="controller/home.js"></script>
     <script src="controller/player.js"></script>
+    <script src="controller/login.js"></script>
     <script src="partial/search/search.js"></script>
     <script src="partial/song/song.js"></script>
     <script src="partial/result/result.js"></script>
@@ -28,7 +30,7 @@
 </head>
 <body ng-app="MusicApp" ng-controller="HomeCtrl">
         
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginCtrl">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -39,19 +41,27 @@
                 </button>
                 <a class="navbar-brand" href="#/">Project name</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
+            <!-- Log In -->
+            <div ng-if="!loggedin" id="navbar" class="navbar-collapse collapse">
+                <form ng-submit="login(user)" class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" placeholder="Email" class="form-control">
+                        <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control">
+                        <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-success">Sign in</button>
                 </form>
             </div><!--/.navbar-collapse -->
+            <!-- Logged Int -->
+            <div ng-if="loggedin" id="navbar" class="navbar-collapse collapse">
+                <div class="navbar-right">
+                    <a class="navbar-brand" href="#/profile">Profile</a>
+                    <button class="btn btn-danger navbar-right" ng-click="logout()" class="btn btn-success">Sign Out</button>
+                </div>
+            </div><!--/.navbar-collapse -->            
         </div>
-    </nav>
+    </nav>    
     
     <div class="container" ui-view>
         
