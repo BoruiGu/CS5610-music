@@ -1,5 +1,5 @@
 ﻿<div ng-controller="SongCtrl">
-    <img src="{{song.album.images[1].url}}" alt="Album Cover">
+    <img src="{{song.album.images[1].url | cover}}" alt="Album Cover">
     <p>{{song.name}}</p>
     Artist 
     <p ng-repeat="artist in song.artists">
@@ -10,4 +10,5 @@
     <p>Add to Playlist</p>
     Comments
     <p>Comments Here</p>
+    <textarea></textarea>
 </div>

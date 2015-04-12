@@ -18,6 +18,14 @@ app.config(['$routeProvider',
             templateUrl: 'partial/song/song.html',
             controller: 'SongCtrl'
         }).
+        when('/album/:id', {
+            templateUrl: 'partial/album/album.html',
+            controller: 'AlbumCtrl'
+        }).
+        when('/artist/:id', {
+            templateUrl: 'partial/artist/artist.html',
+            controller: 'ArtistCtrl'
+        }).
         otherwise({
             redirectTo: '/'
         });

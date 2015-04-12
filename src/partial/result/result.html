@@ -1,3 +1,77 @@
 ﻿<div ng-controller="ResultCtrl">
-    Search Result
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-click="activeTag='song'" role="presentation" class="active"><a href="" aria-controls="home" role="tab" data-toggle="tab">Song</a></li>
+        <li ng-click="activeTag='album'" role="presentation"><a href="" aria-controls="messages" role="tab" data-toggle="tab">Album</a></li>
+        <li ng-click="activeTag='artist'" role="presentation"><a href="" aria-controls="profile" role="tab" data-toggle="tab">Artist</a></li>
+    </ul>
+    <!-- Tab content -->
+    <div>
+        <!-- Songs -->
+        <div ng-show="activeTag=='song'">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-layout-fixed">
+                        <thead>
+                            <tr>
+                                <th class="col-md-6">Song</th>
+                                <th class="col-md-3">Artist</th>
+                                <th class="col-md-3">Album</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="track in res.tracks.items">
+                                <td class="col-md-6">
+                                    <div class="result-overflow-hidden">
+                                        <a href="#/song/{{track.id}}">{{track.name}}</a>
+                                    </div>                                
+                                </td>
+                                <td class="col-md-3">
+                                    <div class="result-overflow-hidden">
+                                        <div class="div-inline" ng-repeat="artist in track.artists">
+                                            <span>
+                                                {{artist.name}}
+                                                <span ng-if="!($last)">&amp;</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-md-3">
+                                    <div class="result-overflow-hidden">
+                                        {{track.album.name}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Albums -->
+        <div ng-show="activeTag=='album'">
+            <div class="row">
+                <div ng-repeat="album in res.albums.items" class="col-xs-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="{{album.images[1].url | cover}}" alt="Album Cover">
+                        <div class="caption">
+                            <div class="result-overflow-hidden">{{album.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Artists -->
+        <div ng-show="activeTag=='artist'">
+            <div class="row">
+                <div ng-repeat="artist in res.artists.items" class="col-xs-6 col-md-3">
+                    <div class="thumbnail">                        
+                        <img src="{{artist.images[1].url | cover}}" alt="Artist Image">
+                        <div class="caption">
+                            <div class="result-overflow-hidden">{{artist.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

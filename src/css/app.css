@@ -1,4 +1,13 @@
-﻿/* Index */
+﻿/* Common */
+.div-inline {
+    display: inline;
+}
+
+.table-layout-fixed {
+    table-layout: fixed;
+}
+
+/* Index */
 
 body {
   padding-bottom: 70px;
@@ -76,5 +85,13 @@ body {
 }
 
 .searchSuggestion {
-    position: absolute; background: white
+    position: absolute; background: white;
+}
+
+/* Result */
+.result-overflow-hidden { 
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
