@@ -1,36 +1,52 @@
-﻿var app = angular.module("MusicApp", ['ngRoute']);
+﻿var app = angular.module("MusicApp", ['ui.router']);
 
-app.config(['$routeProvider',
-  function ($routeProvider) {
-      $routeProvider.
-        when('/', {
-            templateUrl: 'partial/search/search.html'
-        }).
-        when('/profile/:uid', {
+app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('search', {
+            url: '/',
+            templateUrl: 'partial/search/search.html',
+            controller: 'SearchCtrl'
+        })
+        .state('profile', {
+            url: '/profile/:uid',
             templateUrl: 'partial/profile/profile.html',
             controller: 'ProfileCtrl'
-        }).
-        when('/search/:query', {
-            templateUrl: 'partial/result/result.html',
-            controller: 'ResultCtrl'
-        }).
-        when('/song/:id', {
+        })
+		.state('result', {
+		    url: '/search/:query',
+		    views: {
+                /* main template */
+		        '': {
+		            templateUrl: 'partial/result/result.html',
+		            controller: 'ResultCtrl'
+		        },
+		        /* child view */
+		        'search@result': {
+		            templateUrl: 'partial/search/search.html',
+		            controller: 'SearchCtrl'
+		        }
+            }
+        })
+		.state('song', {
+            url: '/song/:id',
             templateUrl: 'partial/song/song.html',
             controller: 'SongCtrl'
-        }).
-        when('/album/:id', {
+        })
+		.state('album', {
+            url: '/album/:id',
             templateUrl: 'partial/album/album.html',
             controller: 'AlbumCtrl'
-        }).
-        when('/artist/:id', {
+        })
+		.state('artist', {
+            url: '/artist/:id',
             templateUrl: 'partial/artist/artist.html',
             controller: 'ArtistCtrl'
-        }).
-        when('/register/:ref', {
+        })
+		.state('register', {
+            url: '/register/:ref',
             templateUrl: 'partial/register/register.html',
             controller: 'RegisterCtrl'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-  }]);
+        })
+}]);

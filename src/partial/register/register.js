@@ -1,4 +1,4 @@
-﻿app.controller("RegisterCtrl", function ($scope, $routeParams) {
-    var refURL = $routeParams.ref;
+﻿app.controller("RegisterCtrl", function ($scope, $stateParams) {
+    var refURL = $stateParams.ref;
     $scope.refURL = refURL;
 });

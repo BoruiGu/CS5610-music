@@ -1,6 +1,6 @@
-﻿app.controller('ResultCtrl', function ($scope, API, $routeParams) {
+﻿app.controller('ResultCtrl', function ($scope, API, $stateParams) {
     $scope.activeTag = 'song';
-    var query = $routeParams.query;
+    var query = $stateParams.query;
     API.search(query, function (res) {
         $scope.res = res;
     });

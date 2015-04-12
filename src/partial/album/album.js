@@ -1,5 +1,5 @@
-﻿app.controller("AlbumCtrl", function ($scope, $routeParams, API) {
-    var id = $routeParams.id;
+﻿app.controller("AlbumCtrl", function ($scope, $stateParams, API) {
+    var id = $stateParams.id;
     API.getAlbum(id, function (res) {
         $scope.album = res;
     });

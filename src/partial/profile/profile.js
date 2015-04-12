@@ -1,4 +1,4 @@
-﻿app.controller("ProfileCtrl", function ($scope, $routeParams) {
-    var uid = $routeParams.uid;
+﻿app.controller("ProfileCtrl", function ($scope, $stateParams) {
+    var uid = $stateParams.uid;
     $scope.uid = uid;
 });

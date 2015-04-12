@@ -1,7 +1,9 @@
-﻿app.controller("SearchCtrl", function ($scope, $http, API, $location, $timeout) {
+﻿app.controller("SearchCtrl", function ($scope, $http, API, $location, $timeout, $state) {
     $scope.search = function (query) {
         $location.path("search/" + query);
     };
+    
+    $scope.isNested = $state.current.name != 'search';
 
     var _timeout;
     /* AutoComplete if user has stopped typing for 400ms */
