@@ -1,10 +1,8 @@
 ﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, USER) {
-    USER.loggedin(function (user) {
-        if (user !== '0') {
-            $scope.loggedin = true;
-        } else {
-            $scope.loggedin = false;
-        }
+    updateScopeLoggedin($scope, USER);
+
+    $rootScope.$on('refreshLogin', function () {
+        updateScopeLoggedin($scope, USER);
     });
 
     $scope.login = function (user) {
@@ -30,3 +28,13 @@
         });
     };
 });
+
+function updateScopeLoggedin($scope, USER) {
+    USER.loggedin(function (user) {
+        if (user !== '0') {
+            $scope.loggedin = true;
+        } else {
+            $scope.loggedin = false;
+        }
+    });
+}

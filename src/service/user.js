@@ -1,6 +1,7 @@
 ﻿app.factory('USER', function ($http, $rootScope) {
     return {
         login: function (user, callback) {
+            //TODO: HTTPS
             $http.post("/login", user)
             .success(function (response) {
                 $rootScope.currentUser = response;
@@ -21,7 +22,7 @@
 
         loggedin: function (callback) {
             $http.get('/loggedin').success(function (user) {
-                $rootScope.errorMessage = null;
+                //$rootScope.errorMessage = null;
                 /* User is Authenticated */
                 if (user !== '0') {
                     $rootScope.currentUser = user;
@@ -33,6 +34,13 @@
                     $rootScope.currentUser = null;
                     callback(user);
                 }
+            });
+        },
+
+        register: function (newUser, callback) {
+            $http.post("/register", newUser)
+            .success(function (response) {
+                callback(response);                
             });
         }
     };

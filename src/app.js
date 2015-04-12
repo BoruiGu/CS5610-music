@@ -56,6 +56,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             url: '/register/:ref',
             templateUrl: 'partial/register/register.html',
             controller: 'RegisterCtrl'
+		})
+        .state('registerNoRef', {
+            url: '/register',
+            templateUrl: 'partial/register/register.html',
+            controller: 'RegisterCtrl'
         })
 }]);
 

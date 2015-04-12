@@ -7,6 +7,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var bcrypt = require('bcrypt-nodejs');
 
 var app = express();
 
@@ -20,8 +21,16 @@ app.use(passport.session());
 
 var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 2525;
-var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1';
-var mysqlPort = process.env.OPENSHIFT_MYSQL_DB_PORT || 3306;
+
+var connection = mysql.createConnection({
+    host: process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1',
+    port: process.env.OPENSHIFT_MYSQL_DB_PORT || 3306,
+    user: 'adminmwuUVlR',
+    password: 'yfjg6-HIbGQw',
+    database: 'music'
+});
+
+connection.connect();
 
 app.get('/hello', function (req, res) {
     res.send('hello world');
@@ -41,15 +50,19 @@ function (username, password, done) {
     //            return done(null, users[u]);
     //        }
     //    }
-    if (username != 'a') {
-        return done(null, false);
-    }
+    var query = connection.query('SELECT * from user where username = ?', username, function (err, rows, fields) {
+        if (err) throw err;
+        if ((rows.length == 0) || (username != rows[0].username) || !bcrypt.compareSync(password, rows[0].password)) {
+            return done(null, false);
+        }
 
-    var user = {
-        name: username,
-        uid: 1
-    }
-    return done(null, user);
+        var user = {
+            uid: rows[0].uid,
+            username: rows[0].username
+        };
+
+        return done(null, user);
+    });
 }));
 
 passport.serializeUser(function (user, done) {
@@ -67,7 +80,20 @@ app.post("/login", passport.authenticate('local'), function (req, res) {
 });
 
 app.get('/loggedin', function (req, res) {
-    res.send(req.isAuthenticated() ? req.user : '0');
+    if (req.isAuthenticated()) {        
+        connection.query('select uid from user where username = ?', req.user.username,
+        function (err, rows, fields) {
+            if (err) throw err;        
+            var user = {
+                uid: rows[0].uid,
+                username: req.user.username
+            }
+            console.log(user);
+            res.send(user);
+        });
+    } else {
+        res.send('0');
+    }
 });
 
 app.post('/logout', function (req, res) {
@@ -76,7 +102,35 @@ app.post('/logout', function (req, res) {
 });
 
 app.post('/register', function (req, res) {
-    var newUser = req.body;
+    /* Generate a salt */
+    var salt = bcrypt.genSaltSync(10);
+    /* Hash the password with the salt */
+    var hash = bcrypt.hashSync(req.body.password, salt);
+    var newUser = {
+        username: req.body.username,
+        /* Store hashed password in database */
+        password: hash
+    };    
+    connection.query('insert into user SET ?', newUser,
+    function (err, rows, fields) {
+        if (err) {
+            res.json(err);
+            return;
+        }
+        /* Successful */
+        console.log(rows);
+        req.login(newUser, function (err) {
+            if (err) {
+                res.json(err);
+                return;
+            }
+            var createdUser = {
+                uid: rows.insertId,
+                username: newUser.username
+            };
+            res.json(createdUser);
+        });
+    });
     // newUser.roles = ['student'];
     // UserModel.findOne({ username: newUser.username }, function (err, user) {
     //     if (err) { return next(err); }
