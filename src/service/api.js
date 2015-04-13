@@ -2,7 +2,7 @@
     var baseURL = "https://api.spotify.com/v1/";
 
     return {
-        search: function (query, callback) {
+        search: function (query, limit, callback) {
             if (typeof query == 'undefined') {
                 // query is undefined, don't send a search query
                 console.log("invalid query");
@@ -15,7 +15,7 @@
                 return;
             }
 
-            var queryUrl = baseURL + "search?q=" + query + "&type=album,artist,track&limit=20";
+            var queryUrl = baseURL + "search?q=" + query + "&type=album,artist,track&limit=" + limit;
             $http.get(queryUrl).success(function (res) {
                 console.log(res);
                 callback(res);

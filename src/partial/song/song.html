@@ -7,8 +7,18 @@
     </p>
     Album
     <p>{{song.album.name}}</p>
-    <p>Add to Playlist</p>
-    Comments
-    <p>Comments Here</p>
-    <textarea></textarea>
+    <button class="btn btn-success">Add to Playlist</button>
+    <br />
+    <div>
+        <p>Comment</p>
+        <div>
+            <form ng-if="currentUser" ng-submit="postComment(content)">
+                <textarea ng-model="content" class="form-control"></textarea>
+                <button type="submit" class="btn btn-success">Post Comment</button>
+            </form>            
+            <textarea disabled ng-if="!currentUser"></textarea>
+            <p ng-if="!currentUser">please sign in to comment</p>
+        </div>
+        <p>Comments Here</p>
+    </div>
 </div>

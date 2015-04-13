@@ -73,13 +73,13 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-app.post("/login", passport.authenticate('local'), function (req, res) {
+app.post("/api/login", passport.authenticate('local'), function (req, res) {
     var user = req.user;
     console.log(user);
     res.json(user);
 });
 
-app.get('/loggedin', function (req, res) {
+app.get('/api/loggedin', function (req, res) {
     if (req.isAuthenticated()) {        
         connection.query('select uid from user where username = ?', req.user.username,
         function (err, rows, fields) {
@@ -96,12 +96,12 @@ app.get('/loggedin', function (req, res) {
     }
 });
 
-app.post('/logout', function (req, res) {
+app.post('/api/logout', function (req, res) {
     req.logOut();
     res.send(200);
 });
 
-app.post('/register', function (req, res) {
+app.post('/api/register', function (req, res) {
     /* Generate a salt */
     var salt = bcrypt.genSaltSync(10);
     /* Hash the password with the salt */
@@ -131,21 +131,6 @@ app.post('/register', function (req, res) {
             res.json(createdUser);
         });
     });
-    // newUser.roles = ['student'];
-    // UserModel.findOne({ username: newUser.username }, function (err, user) {
-    //     if (err) { return next(err); }
-    //     if (user) {
-    //         res.json(null);
-    //         return;
-    //     }
-    //     var newUser = new UserModel(req.body);
-    //     newUser.save(function (err, user) {
-    //         req.login(user, function (err) {
-    //             if (err) { return next(err); }
-    //             res.json(user);
-    //         });
-    //     });
-    // });
 });
 
 var auth = function (req, res, next) {
@@ -200,4 +185,11 @@ app.post("/rest/user", auth, function (req, res) {
     //         });
     //     }
     // });
+});
+
+app.post('/api/comment', function (req, res) {
+    connection.query('insert into comment SET ?', req.body,
+    function (err, rows, fields) {
+        res.send(200);
+    });
 });

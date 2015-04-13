@@ -2,7 +2,7 @@
     return {
         login: function (user, callback) {
             //TODO: HTTPS
-            $http.post("/login", user)
+            $http.post("api/login", user)
             .success(function (response) {
                 $rootScope.currentUser = response;
                 callback(response);
@@ -13,7 +13,7 @@
         },
 
         logout: function (callback) {
-            $http.post("/logout")
+            $http.post("api/logout")
             .success(function () {
                 $rootScope.currentUser = null;
                 callback();
@@ -21,7 +21,7 @@
         },
 
         loggedin: function (callback) {
-            $http.get('/loggedin').success(function (user) {
+            $http.get('api/loggedin').success(function (user) {
                 //$rootScope.errorMessage = null;
                 /* User is Authenticated */
                 if (user !== '0') {
@@ -38,9 +38,21 @@
         },
 
         register: function (newUser, callback) {
-            $http.post("/register", newUser)
+            $http.post("api/register", newUser)
             .success(function (response) {
                 callback(response);                
+            });
+        },
+
+        postComment: function (uid, id, content, callback) {
+            var req = {
+                uid: uid,
+                id: id,
+                content: content
+            };
+            $http.post("api/comment", req)
+            .success(function (response) {
+                callback(response);
             });
         }
     };

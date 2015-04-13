@@ -23,7 +23,7 @@
                         <tr ng-repeat="item in ACRes.albums.items">
                             <td ng-if="$first" rowspan="{{ACRes.albums.items.length}}">Album</td>
                             <td>
-                                <a href="http://www.google.com/">
+                                <a href="#/album/{{item.id}}">
                                     {{item.name}}
                                 </a>
                             </td>
@@ -31,7 +31,7 @@
                         <tr ng-repeat="item in ACRes.artists.items">
                             <td ng-if="$first" rowspan="{{ACRes.artists.items.length}}">Artist</td>
                             <td>
-                                <a href="http://www.google.com/">
+                                <a href="#/artist/{{item.id}}">
                                     {{item.name}}
                                 </a>
                             </td>

@@ -15,7 +15,7 @@
         /* Delay before sending query */
         _timeout = $timeout(function(){
             $scope.ACRes = null;
-            API.search(query, function (res) {
+            API.search(query, /* limit */ 5, function (res) {
                 $scope.ACRes = res;
             });
             _timeout = null;
