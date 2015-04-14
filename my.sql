@@ -30,3 +30,13 @@ id varchar(30) not null,
 content mediumtext,
 foreign key (uid) references user(uid)
 );
+
+alter table comment add time datetime;
+alter table comment modify column time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP;
+
+/* Get Comment */
+select user.username, comment.time, comment.content
+from user
+join comment
+on user.uid = comment.uid
+where comment.id = '1fn6EFBBNiDVhL3DxDDJTD';

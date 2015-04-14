@@ -193,3 +193,16 @@ app.post('/api/comment', function (req, res) {
         res.send(200);
     });
 });
+
+app.get('/api/comment/:id', function (req, res) {
+    var id = req.params.id;
+    var queryString = 'select user.username, comment.time, comment.content '
+                    + 'from user '
+                    + 'join comment '
+                    + 'on user.uid = comment.uid '
+                    + 'where comment.id = ?';
+    connection.query(queryString, id,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+});

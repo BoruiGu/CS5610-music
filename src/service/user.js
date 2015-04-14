@@ -45,6 +45,7 @@
         },
 
         postComment: function (uid, id, content, callback) {
+            console.log(new Date());
             var req = {
                 uid: uid,
                 id: id,
@@ -52,6 +53,12 @@
             };
             $http.post("api/comment", req)
             .success(function (response) {
+                callback(response);
+            });
+        },
+
+        getComment: function (id, callback) {
+            $http.get('api/comment/' + id).success(function (response) {
                 callback(response);
             });
         }
