@@ -16,6 +16,8 @@
                 /* Logged In */
                 console.log(response);
                 $scope.loggedin = true;
+                /* Refresh current view */
+                $state.go($state.current, /* for $stateParams */ {}, { reload: true });
             }
         });
     };
@@ -23,6 +25,8 @@
     $scope.logout = function () {
         USER.logout(function () {
             $scope.loggedin = false;
+            /* Refresh current view */
+            $state.go($state.current, /* for $stateParams */ {}, { reload: true });
         });
     };
 });

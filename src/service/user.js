@@ -96,6 +96,7 @@
         },
 
         unfollow: function (uid1, uid2, callback) {
+            console.log("unfollow: " + uid1 + ' ' + uid2);
             var data = {
                 uid1: uid1,
                 uid2: uid2

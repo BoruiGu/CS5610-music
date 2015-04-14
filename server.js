@@ -230,11 +230,12 @@ app.post('/api/follow', function (req, res) {
 
 /* Unfollow a user */
 app.post('/api/unfollow', function (req, res) {
-    connection.query('delete from follow where uid1 = ? and uid2 = ?',
-    req.body.uid1, req.body.uid2,
+    var query = connection.query('delete from follow where uid1 = ? and uid2 = ?',
+    [req.body.uid1, req.body.uid2],
     function (err, rows, fields) {
         res.send(200);
     });
+    console.log(query.sql);
 });
 
 /* Retrieve following of a certain user identified by uid */

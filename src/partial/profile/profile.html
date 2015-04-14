@@ -4,6 +4,9 @@
     <p>Follower:</p>
     <div ng-if="!myProfile && !(loggedin && (currentUser.uid == user.uid))">
         <button ng-click="follow()" ng-show="loggedin && !following" class="btn btn-success">Follow</button>
-        <button ng-click="unfollow()" ng-show="loggedin && following" class="btn btn-danger">Unfollow</button>
+        <div ng-mouseenter="showUnfoBtn = true" ng-mouseleave="showUnfoBtn = false" ng-show="loggedin && following">
+            <button ng-show="!showUnfoBtn" class="btn btn-primary">Following</button>
+            <button ng-show="showUnfoBtn" ng-click="unfollow()" class="btn btn-danger">Unfollow</button>
+        </div>
     </div>
 </div>
