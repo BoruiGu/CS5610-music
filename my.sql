@@ -32,7 +32,10 @@ foreign key (uid) references user(uid)
 );
 
 alter table comment add time datetime;
+alter table comment add commentid int primary key AUTO_INCREMENT;
 alter table comment modify column time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP;
+
+rename table playlist to mylist;
 
 /* Get Comment */
 select user.username, comment.time, comment.content
@@ -40,3 +43,13 @@ from user
 join comment
 on user.uid = comment.uid
 where comment.id = '1fn6EFBBNiDVhL3DxDDJTD';
+
+/* Following */
+select uid, username from user
+where uid in
+(select uid2 from follow where uid1 = 37);
+
+/* Followed */
+select uid, username from user
+where uid in
+(select uid1 from follow where uid2 = 38);
