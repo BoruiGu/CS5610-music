@@ -7,8 +7,7 @@
             alert("cannot submit empty comment");
             return;
         }
-        USER.postComment($rootScope.currentUser.uid, id, content, function (res) {
-            //TODO don't work
+        USER.postComment($rootScope.currentUser.uid, id, content, function (res) {            
             $scope.content = null;
             $rootScope.$emit('refreshComment')
         });
