@@ -10,7 +10,7 @@
     </div>
     <p ng-if="!comments.length">Be the first to post a comment!</p>
     <div ng-if="comments.length" ng-repeat="comment in comments">
-        User:{{comment.username}} On {{comment.time | datetime}}:<br />
+        User:<a href="#/profile/{{comment.uid}}">{{comment.username}}</a> On {{comment.time | datetime}}:<br />
         {{comment.content}}
     </div>
 </div>

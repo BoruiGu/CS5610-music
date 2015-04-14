@@ -1,3 +1,9 @@
 ﻿<div>
-    User Profile {{uid}}
+    User Profile {{user.username}}
+    <p>Following:</p>
+    <p>Follower:</p>
+    <div ng-if="!myProfile && !(loggedin && (currentUser.uid == user.uid))">
+        <button ng-click="follow()" ng-show="loggedin && !following" class="btn btn-success">Follow</button>
+        <button ng-click="unfollow()" ng-show="loggedin && following" class="btn btn-danger">Unfollow</button>
+    </div>
 </div>

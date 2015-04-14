@@ -9,11 +9,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: 'partial/search/search.html',
             controller: 'SearchCtrl'
         })
-        .state('profile', {
-            url: '/profile/:uid',
-            templateUrl: 'partial/profile/profile.html',
-            controller: 'ProfileCtrl'
-        })
         .state('myProfile', {
             url: '/profile',
             templateUrl: 'partial/profile/profile.html',
@@ -22,6 +17,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 loggedin: checkLoggedin
             }
         })
+        .state('profile', {
+            url: '/profile/{uid:[0-9]+}',
+            templateUrl: 'partial/profile/profile.html',
+            controller: 'ProfileCtrl'
+        })        
 		.state('result', {
 		    url: '/search/:query',
 		    views: {

@@ -56,9 +56,51 @@
                 callback(response);
             });
         },
-
+        /* Retrieve comments for a certain song/artist/album identified by id */
         getComment: function (id, callback) {
             $http.get('api/comment/' + id).success(function (response) {
+                callback(response);
+            });
+        },
+        /* Retrieve basic user info by uid */
+        getUserInfo: function (uid, callback) {
+            $http.get('api/userinfo/' + uid).success(function (response) {
+                if (response.length == 0) {
+                    callback('not found');
+                } else {
+                    callback(response[0]);
+                }                
+            });
+        },
+
+        following: function (uid, callback) {
+            $http.get('api/following/' + uid).success(function (response) {
+                callback(response);
+            });
+        },
+
+        followed: function (uid, callback) {
+            $http.get('api/followed/' + uid).success(function (response) {
+                callback(response);
+            });
+        },
+
+        follow: function (uid1, uid2, callback) {
+            var data = {
+                uid1: uid1,
+                uid2: uid2
+            };
+            $http.post('api/follow/', data).success(function (response) {
+                callback(response);
+            });
+        },
+
+        unfollow: function (uid1, uid2, callback) {
+            var data = {
+                uid1: uid1,
+                uid2: uid2
+            };
+            $http.post('api/unfollow/', data).success(function (response) {
                 callback(response);
             });
         }

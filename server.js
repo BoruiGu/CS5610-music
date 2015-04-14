@@ -187,6 +187,18 @@ app.post("/rest/user", auth, function (req, res) {
     // });
 });
 
+/* Retrieve basic user info by uid */
+app.get('/api/userinfo/:uid', function (req, res) {
+    var uid = req.params.uid;
+    var queryString = 'select uid, username from user '
+                    + 'where uid = ?';
+    connection.query(queryString, uid,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+});
+
+/* Post a new comment */
 app.post('/api/comment', function (req, res) {
     connection.query('insert into comment SET ?', req.body,
     function (err, rows, fields) {
@@ -194,14 +206,56 @@ app.post('/api/comment', function (req, res) {
     });
 });
 
+/* Retrieve comments for a certain song/artist/album identified by id */
 app.get('/api/comment/:id', function (req, res) {
     var id = req.params.id;
-    var queryString = 'select user.username, comment.time, comment.content '
+    var queryString = 'select user.uid, user.username, comment.time, comment.content '
                     + 'from user '
                     + 'join comment '
                     + 'on user.uid = comment.uid '
                     + 'where comment.id = ?';
     connection.query(queryString, id,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+});
+
+/* Follow a user */
+app.post('/api/follow', function (req, res) {
+    connection.query('insert into follow SET ?', req.body,
+    function (err, rows, fields) {
+        res.send(200);
+    });
+});
+
+/* Unfollow a user */
+app.post('/api/unfollow', function (req, res) {
+    connection.query('delete from follow where uid1 = ? and uid2 = ?',
+    req.body.uid1, req.body.uid2,
+    function (err, rows, fields) {
+        res.send(200);
+    });
+});
+
+/* Retrieve following of a certain user identified by uid */
+app.get('/api/following/:uid', function (req, res) {
+    var uid = req.params.uid;
+    var queryString = 'select uid, username from user '
+                    + 'where uid in'
+                    + '(select uid2 from follow where uid1 = ?)';
+    connection.query(queryString, uid,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+});
+
+/* Retrieve followed of a certain user identified by id */
+app.get('/api/followed/:uid', function (req, res) {
+    var uid = req.params.uid;
+    var queryString = 'select uid, username from user '
+                    + 'where uid in'
+                    + '(select uid1 from follow where uid2 = ?)';
+    connection.query(queryString, uid,
     function (err, rows, fields) {
         res.json(rows);
     });
