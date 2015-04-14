@@ -1,4 +1,4 @@
-﻿app.controller("RegisterCtrl", function ($scope, $stateParams, USER, $state, $rootScope) {
+﻿app.controller("RegisterCtrl", function ($scope, $stateParams, User, $state, $rootScope) {
     var refURL = $stateParams.ref;
     
     $scope.register = function (user) {
@@ -12,7 +12,7 @@
             return;
         }
 
-        USER.register(user, function (response) {
+        User.register(user, function (response) {
             console.log(response);
             if (response.username) {
                 $rootScope.currentUser = response;

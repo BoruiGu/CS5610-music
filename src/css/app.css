@@ -9,65 +9,125 @@
 
 /* Index */
 
-body {
-  padding-bottom: 70px;
-  padding-top: 70px;
+@-webkit-keyframes shake {
+    0% {
+        -webkit-transform: translateX(0);
+    }
+
+    12.5% {
+        -webkit-transform: translateX(-6px) rotateY(-7deg);
+    }
+
+    37.5% {
+        -webkit-transform: translateX(5px) rotateY(5deg);
+    }
+
+    62.5% {
+        -webkit-transform: translateX(-3px) rotateY(-3deg);
+    }
+
+    87.5% {
+        -webkit-transform: translateX(2px) rotateY(1deg);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+    }
 }
 
-.navbar-player{
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    12.5% {
+        transform: translateX(-6px) rotateY(-7deg);
+    }
+
+    37.5% {
+        transform: translateX(5px) rotateY(5deg);
+    }
+
+    62.5% {
+        transform: translateX(-3px) rotateY(-3deg);
+    }
+
+    87.5% {
+        transform: translateX(2px) rotateY(1deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    /* animation: name duration timing-function delay 
+                  iteration-count direction fill-mode 
+                  play-state */
+    -webkit-animation: shake 400ms ease-in-out 0 3;
+    animation: shake 400ms ease-in-out 0 3;
+}
+
+body {
+    padding-bottom: 70px;
+    padding-top: 70px;
+}
+
+.navbar-player {
     height: 45px;
     min-height: 45px;
 }
 
-.player-row{
+.player-row {
     height: inherit;
 }
 
-.playerWrap{
+.playerWrap {
     position: relative;
     height: inherit;
 }
 
-.playerWrap .btn-Prev{    
-    position: absolute;
-    top: 50%;
-    /* This won't work as margin percentages 
+    .playerWrap .btn-Prev {
+        position: absolute;
+        top: 50%;
+        /* This won't work as margin percentages 
        are always calculated against width */
-    /*margin-top: -25%;*/
-    transform: translate(0, -50%);
-    left: 5px;
-}
+        /*margin-top: -25%;*/
+        transform: translate(0, -50%);
+        left: 5px;
+    }
 
-.playerWrap .btn-Play{
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    left: 40px;
-}
+    .playerWrap .btn-Play {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 40px;
+    }
 
-.playerWrap .btn-Next{
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    left: 75px;
-}
+    .playerWrap .btn-Next {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 75px;
+    }
 
-.playerWrap .bar-progress{
-    position: absolute;
-    left: 110px;
-    right: 20px;
-    top: 50%;
-    transform: translate(0, -50%);
-}
+    .playerWrap .bar-progress {
+        position: absolute;
+        left: 110px;
+        right: 20px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
 
-.playerWrap .btn-volume{
-    position: absolute;
-    right: 0px;
-    top: 50%;
-    transform: translate(0, -50%);
-}
+    .playerWrap .btn-volume {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
 
-#volumeSlider{
+#volumeSlider {
     position: absolute;
     right: 0px;
     writing-mode: bt-lr; /* IE */
@@ -81,15 +141,18 @@ body {
 /* Search */
 
 .searchBoxWrap {
-    height: 34px; position: relative; z-index: 3
+    height: 34px;
+    position: relative;
+    z-index: 3;
 }
 
 .searchSuggestion {
-    position: absolute; background: white;
+    position: absolute;
+    background: white;
 }
 
 /* Result */
-.result-overflow-hidden { 
+.result-overflow-hidden {
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;

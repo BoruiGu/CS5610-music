@@ -1,12 +1,12 @@
-﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, USER) {
-    updateScopeLoggedin($scope, USER);
+﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, User, $timeout) {
+    updateScopeLoggedin($scope, User);
 
     $rootScope.$on('refreshLogin', function () {
-        updateScopeLoggedin($scope, USER);
+        updateScopeLoggedin($scope, User);
     });
 
     $scope.login = function (user) {
-        USER.login(user, function (response) {
+        User.login(user, function (response) {
             if (typeof response === 'number') {
                 /* Error in Log In */                
                 alert("incorrect username or password. please try again");
@@ -23,16 +23,27 @@
     };
 
     $scope.logout = function () {
-        USER.logout(function () {
+        User.logout(function () {
             $scope.loggedin = false;
             /* Refresh current view */
             $state.go($state.current, /* for $stateParams */ {}, { reload: true });
         });
     };
+
+    $rootScope.$on('setLoginFocus', function () {
+        $scope.focusLogin = true;
+        /* Add class shake to start animation */
+        $scope.loginClass = "shake";
+    });
+
+    $scope.blur = function () {
+        $scope.focusLogin = false;
+        $scope.loginClass = null;
+    }
 });
 
-function updateScopeLoggedin($scope, USER) {
-    USER.loggedin(function (user) {
+function updateScopeLoggedin($scope, User) {
+    User.loggedin(function (user) {
         if (user !== '0') {
             $scope.loggedin = true;
         } else {

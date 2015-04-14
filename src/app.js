@@ -88,10 +88,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         })
 }]);
 
-var checkLoggedin = function ($q, $timeout, $http, $state, $rootScope, USER) {
+var checkLoggedin = function ($q, $timeout, $http, $state, $rootScope, User) {
     var deferred = $q.defer();
 
-    USER.loggedin(function (user) {
+    User.loggedin(function (user) {
         if (user !== '0') {
             deferred.resolve();
         } else {

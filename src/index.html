@@ -14,6 +14,7 @@
 <script src="app.js"></script>
     <script src="service/api.js"></script>
     <script src="service/user.js"></script>
+    <script src="service/player.js"></script>
     <script src="controller/home.js"></script>
     <script src="controller/player.js"></script>
     <script src="controller/login.js"></script>
@@ -28,6 +29,7 @@
     <script src="filter/cover.js"></script>
     <script src="filter/artists.js"></script>
     <script src="filter/datetime.js"></script>
+    <script src="directive/focusOn.js"></script>
     <link rel="stylesheet" href="css/app.css" />
 </head>
 <body ng-app="MusicApp" ng-controller="HomeCtrl">
@@ -46,8 +48,8 @@
             <!-- Log In -->
             <div ng-if="!loggedin" id="navbar" class="navbar-collapse collapse">
                 <form ng-submit="login(user)" class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
+                    <div ng-class="loginClass" class="form-group">
+                        <input ng-model="user.username" ng-blur="blur()" focus-on="focusLogin" type="text" placeholder="Username" class="form-control">
                     </div>
                     <div class="form-group">
                         <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
@@ -55,6 +57,7 @@
                     <button type="submit" class="btn btn-success">Sign in</button>
                 </form>
             </div><!--/.navbar-collapse -->
+
             <!-- Logged Int -->
             <div ng-if="loggedin" id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-right">
@@ -89,7 +92,7 @@
                     <input type="range" ng-model="progress" ng-change="changeProgress()" min="0" max="{{duration}}" />
                 </div>
                 <!--orient="vertical" for firefox-->
-                <input ng-show="showVolumeSlider" id="volumeSlider" type="range" orient="vertical" ng-model="volume" ng-change="changeVolume()" min="0" max="100" />
+                <input ng-blur="showVolumeSlider = false" ng-show="showVolumeSlider" focus-on="showVolumeSlider" id="volumeSlider" type="range" orient="vertical" ng-model="volume" ng-change="changeVolume()" min="0" max="100" />
                 <div class="btn-volume">
                     <a ng-click="showVolumeSlider = !showVolumeSlider"><span class="glyphicon glyphicon-volume-up"></span></a>
                 </div>

@@ -8,7 +8,9 @@
             <button type="submit" class="btn btn-success">Post Comment</button>
         </form>
         <textarea disabled ng-show="!currentUser"></textarea>
-        <p ng-show="!currentUser">please sign in to comment</p>
+        <p ng-show="!currentUser">
+            please <a ng-click="setLoginFocus()" href="">sign in</a> to comment
+        </p>
     </div>
     <p ng-show="!comments.length">Be the first to post a comment!</p>
     <!-- true in orderBy sets reverse order -->

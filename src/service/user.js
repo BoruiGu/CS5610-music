@@ -1,4 +1,4 @@
-﻿app.factory('USER', function ($http, $rootScope) {
+﻿app.factory('User', function ($http, $rootScope) {
     return {
         login: function (user, callback) {
             //TODO: HTTPS
