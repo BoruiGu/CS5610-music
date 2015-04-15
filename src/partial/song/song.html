@@ -7,7 +7,9 @@
     </p>
     Album
     <p>{{song.album.name}}</p>
-    <button class="btn btn-success">Add to Playlist</button>
+    <button ng-click="play()" class="btn btn-success">Play</button>
+    <button ng-click="addToList()" class="btn btn-success">Add to Playlist</button>
+    <button class="btn btn-success">Favorite</button>
     <br />
     <!-- Comment -->
     <div ui-view="comment"></div>

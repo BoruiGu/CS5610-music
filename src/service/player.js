@@ -21,9 +21,9 @@
     }
 
     return {
-        startPlaying: function () {
+        startPlaying: function (url) {
             _progress = 0;
-            player.src = "https://p.scdn.co/mp3-preview/885021ec9b6ac110238a9463bdcc0dc6d4778cec";
+            player.src = url;
             player.volume = _volume / 100.0;
             player.addEventListener('loadedmetadata', function () {
                 console.log('player loadedmetadata');
@@ -39,12 +39,15 @@
 
             player.addEventListener('ended', function () {
                 console.log('track ended');
+                /* Stop the player */
+                player.src = null;
                 stopTimer();
                 _playerStarted = false;
                 _isPaused = false;
                 _isPlaying = false;
                 $rootScope.$emit('playerStatusUpdate');
                 $rootScope.$emit('playerProgress');
+                $rootScope.$emit('playerEnded');
             }, false);
         },
 
