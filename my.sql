@@ -53,3 +53,5 @@ where uid in
 select uid, username from user
 where uid in
 (select uid1 from follow where uid2 = 38);
+
+alter table mylist change content list varchar(65535);

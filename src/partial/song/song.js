@@ -14,12 +14,12 @@
                 name: $scope.song.album.name
             }
         }
-        Playlist.add(e);
+        return Playlist.add(e);
     };
 
     $scope.play = function () {
-        addToList();
-        Playlist.seek($rootScope.playlist.length - 1);
+        var index = addToList();
+        Playlist.seek(index);
         var cur = Playlist.getCurrent();
         if (cur) {
             Player.startPlaying(cur.preview_url);

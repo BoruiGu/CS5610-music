@@ -20,7 +20,7 @@
         },
 
         next: function () {
-            pos++;
+            pos++;            
             if (pos >= list.length) {
                 pos = 0;
             };
@@ -35,19 +35,41 @@
             $rootScope.$emit('playlistProgress');
         },
 
-        seek: function (/**/) {
-
+        seek: function (index) {
+            pos = index;
+            $rootScope.$emit('playlistProgress');
         },
 
         add: function (e) {
-            list.push(e);
-            /* Save playlist to localStorage */
-            localStorage.setItem(itemStr, JSON.stringify(list));
-            $rootScope.$emit('playlistUpdated');
+            /* Not supported by most browsers */
+            // var index = list.findIndex(function (ele) {
+            //     return (ele.id == e.id);
+            // });
+            var index = -1;
+            list.some(function (ele, i) {
+                if (ele.id == e.id) {
+                    index = i;
+                    return true;
+                }
+                return false;
+            });
+            if (index != -1) {
+                /* e in list, return its index */
+                return index;
+            } else {
+                /* e not in list, push it */
+                index = list.push(e) - 1;
+                /* Save playlist to localStorage */
+                localStorage.setItem(itemStr, JSON.stringify(list));
+                $rootScope.$emit('playlistUpdated');
+                return index;
+            }
         },
 
-        remove: function (/**/) {
-
+        remove: function (index) {
+            list.splice(index, 1);
+            localStorage.setItem(itemStr, JSON.stringify(list));
+            $rootScope.$emit('playlistUpdated');
         },
 
         getList: function () {

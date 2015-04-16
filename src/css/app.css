@@ -9,7 +9,7 @@
 
 /* Index */
 
-@-webkit-keyframes shake {
+@-webkit-keyframes webkit-shake {
     0% {
         -webkit-transform: translateX(0);
     }
@@ -65,8 +65,10 @@
     /* animation: name duration timing-function delay 
                   iteration-count direction fill-mode 
                   play-state */
-    -webkit-animation: shake 400ms ease-in-out 0 3;
-    animation: shake 400ms ease-in-out 0 3;
+    -webkit-animation: webkit-shake 400ms ease-in-out;
+    -webkit-animation-iteration-count: 2;
+    animation: shake 400ms ease-in-out;
+    animation-iteration-count: 2;
 }
 
 body {
@@ -95,41 +97,58 @@ body {
        are always calculated against width */
         /*margin-top: -25%;*/
         transform: translate(0, -50%);
-        left: 5px;
+        left: 25px;
     }
 
     .playerWrap .btn-Play {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        left: 40px;
+        left: 60px;
     }
 
     .playerWrap .btn-Next {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        left: 75px;
+        left: 95px;
     }
 
     .playerWrap .bar-progress {
         position: absolute;
-        left: 110px;
-        right: 20px;
+        left: 130px;
+        right: 80px;
         top: 50%;
         transform: translate(0, -50%);
     }
 
     .playerWrap .btn-volume {
         position: absolute;
-        right: 0px;
+        right: 60px;
         top: 50%;
         transform: translate(0, -50%);
     }
 
+    .playerWrap .playlist {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    .playerWrap .dropdown-menu a {
+        position: relative;
+    }
+
+        .playerWrap .dropdown-menu a span {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+        }
+
 #volumeSlider {
     position: absolute;
-    right: 0px;
+    right: 60px;
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;

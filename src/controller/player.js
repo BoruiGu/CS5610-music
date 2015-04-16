@@ -11,6 +11,29 @@
         $rootScope.position = Playlist.getPos();
     }
 
+    function playChange(rel, stopAtEnd, absIdx){
+        if (rel == 1){
+            Playlist.next();
+        }
+        if (rel == -1) {
+            Playlist.prev();
+        }
+        if (typeof absIdx !== 'undefined') {
+            Playlist.seek(absIdx);
+        }
+        if (($rootScope.position == 0) && (stopAtEnd) && (rel == 1)) {
+            /* Reached end of playlist, stop */
+            console.log('end of playlist');
+            $scope.progress = 0;
+            //Player.startPlaying(null);
+        } else {
+            var cur = Playlist.getCurrent();
+            if (cur) {
+                Player.startPlaying(cur.preview_url)
+            }
+        }
+    }
+
     refreshPlaylist();
 
     $scope.startPlaying = function () {
@@ -19,6 +42,14 @@
             Player.startPlaying(cur.preview_url);
         }
     }
+
+    $scope.prev = function () {
+        playChange(/*rel*/ -1, /*stopAtEnd*/ false);
+    };
+
+    $scope.next = function () {
+        playChange(/*rel*/ 1, /*stopAtEnd*/ false);
+    };
 
     $scope.pause = function () {
         Player.pause();
@@ -34,6 +65,14 @@
 
     $scope.changeVolume = function () {
         Player.changeVolume($scope.volume);
+    };
+
+    $scope.playlistRemove = function (index) {
+        Playlist.remove(index);
+    };
+
+    $scope.playlistClicked = function (index) {
+        playChange(0, false, index);
     };
 
     $rootScope.$on('playerProgress', function () {
@@ -56,15 +95,6 @@
     });
 
     $rootScope.$on('playerEnded', function () {
-        Playlist.next();
-        if ($rootScope.position == 0) {
-            /* Reached end of playlist */
-            console.log('end of playlist');
-            return;
-        }
-        var cur = Playlist.getCurrent();
-        if (cur) {
-            Player.startPlaying(cur.preview_url);
-        }
+        playChange(/*rel*/ 1, /*stopAtEnd*/ true);
     });
 });

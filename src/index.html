@@ -97,6 +97,31 @@
                 <div class="btn-volume">
                     <a ng-click="showVolumeSlider = !showVolumeSlider"><span class="glyphicon glyphicon-volume-up"></span></a>
                 </div>
+                <!-- Playlist dropup -->
+                <div class="playlist btn-group dropup">
+                    <button type="button" class="btn btn-link dropdown-toggle"
+                            data-toggle="dropdown">
+                        {{playlist.length}}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li ng-class="(position == $index) ? 'active' : null" 
+                            ng-mouseenter="showTrash = true" 
+                            ng-mouseleave="showTrash = false" 
+                            ng-if=" playlist.length" 
+                            ng-repeat="playlistItem in playlist track by playlistItem.id">
+                            
+                            <a ng-click="playlistClicked($index)" href="">
+                                {{playlistItem.name}}
+                                <span ng-click="playlistRemove($index)" ng-show="showTrash" class="glyphicon glyphicon-trash"></span>
+                            </a>
+
+                        </li>
+                        <li ng-if="!playlist.length">
+                            <a>Playlist is empty</a>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
         </div>
     </nav>

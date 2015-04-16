@@ -12,36 +12,44 @@
         _progress = Math.floor(player.currentTime * 1000.0);
         $rootScope.$emit('playerProgress');
     }
-    function setTimer() {
-        stopTimer();
+    function setTick() {
+        stopTick();
         timer = $interval(tick, 100);
     }
-    function stopTimer() {
+    function stopTick() {
         $interval.cancel(timer);
     }
-
+  
     return {
         startPlaying: function (url) {
+            /* Simply set src property of player will act as if there
+               are "multiple" instances of Audio, and multiple
+               'loadedmetadata' | 'ended' events will fire at the same
+               time. Each time src is set, number of "instances"++ 
+               (Chrome 42.0.2311.90 m)
+               For a workaround, pause and create a fresh new Audio(),
+               presumably GC will do the clean up */
+            player.pause();
+            player = new Audio();
             _progress = 0;
             player.src = url;
             player.volume = _volume / 100.0;
+
             player.addEventListener('loadedmetadata', function () {
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
                 player.play();
-                setTimer();
+                setTick();
                 _playerStarted = true;
                 _isPlaying = true;
-                _isPaused = false;
+                _isPaused = false;                
                 $rootScope.$emit('playerStatusUpdate');
                 $rootScope.$emit('playerProgress');
             }, false);
 
             player.addEventListener('ended', function () {
-                console.log('track ended');
-                /* Stop the player */
-                player.src = null;
-                stopTimer();
+                console.log('track ended');                                
+                stopTick();
                 _playerStarted = false;
                 _isPaused = false;
                 _isPlaying = false;
@@ -53,7 +61,7 @@
 
         pause: function () {
             player.pause();
-            stopTimer();
+            stopTick();
             _isPlaying = false;
             _isPaused = true;
             $rootScope.$emit('playerStatusUpdate');
@@ -61,7 +69,7 @@
 
         resume: function () {
             player.play();
-            setTimer();
+            setTick();
             _isPlaying = true;
             _isPaused = false;
             $rootScope.$emit('playerStatusUpdate');
