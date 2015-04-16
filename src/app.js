@@ -11,16 +11,33 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         })
         .state('myProfile', {
             url: '/profile',
-            templateUrl: 'partial/profile/profile.html',
-            controller: 'ProfileCtrl',
+            views: {
+                '': {
+                    templateUrl: 'partial/profile/profile.html',
+                    controller: 'ProfileCtrl',
+                },
+                'tracklist@myProfile': {
+                    templateUrl: 'partial/tracklist/tracklist.html',
+                    controller: 'TracklistCtrl'
+                }
+            },            
             resolve: {
                 loggedin: checkLoggedin
             }
         })
         .state('profile', {
             url: '/profile/{uid:[0-9]+}',
-            templateUrl: 'partial/profile/profile.html',
-            controller: 'ProfileCtrl'
+            views: {
+                '': {
+                    templateUrl: 'partial/profile/profile.html',
+                    controller: 'ProfileCtrl'
+                },
+
+                'tracklist@profile': {
+                    templateUrl: 'partial/tracklist/tracklist.html',
+                    controller: 'TracklistCtrl'
+                }
+            }            
         })        
 		.state('result', {
 		    url: '/search/:query',
@@ -34,6 +51,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
 		        'search@result': {
 		            templateUrl: 'partial/search/search.html',
 		            controller: 'SearchCtrl'
+		        },
+
+		        'tracklist@result': {
+		            templateUrl: 'partial/tracklist/tracklist.html',
+		            controller: 'TracklistCtrl'
 		        }
             }
         })

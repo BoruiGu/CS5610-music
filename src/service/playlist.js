@@ -1,4 +1,4 @@
-﻿app.factory('Playlist', function ($rootScope) {
+﻿app.factory('Playlist', function ($rootScope, Player) {
     /* List of {id, name, preview_url, artists[], album.name} */
     var itemStr = 'playlist';
     /* Load playlist from localStorage */
@@ -68,8 +68,32 @@
 
         remove: function (index) {
             list.splice(index, 1);
-            localStorage.setItem(itemStr, JSON.stringify(list));
             $rootScope.$emit('playlistUpdated');
+            console.log(pos);
+            console.log(index);            
+            if (index == pos) {
+                /* Remove current track */
+
+                if (pos >= list.length) {
+                    /* End of playlist */
+                    /* move position */
+                    pos--;
+                    $rootScope.$emit('playlistProgress');
+                    /* Seek to end of track, trigger playerEnded */
+                    Player.changeProgress(Player.getDuration());
+                } else {
+                    /* Start playing next track */
+                    Player.startPlaying(list[pos].preview_url);
+                }
+            } else {
+                /* Not remove current track */
+                if (index < pos) {
+                    /* remove an item before current */
+                    pos--;
+                    $rootScope.$emit('playlistProgress');
+                }
+            }
+            localStorage.setItem(itemStr, JSON.stringify(list));            
         },
 
         getList: function () {

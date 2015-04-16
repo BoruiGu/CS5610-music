@@ -1,4 +1,4 @@
-﻿app.controller("CommentCtrl", function ($scope, $stateParams, User, $rootScope) {
+﻿app.controller("CommentCtrl", function ($scope, $stateParams, User, $rootScope, $state) {
     var id = $stateParams.id;
     getComment(id, $scope, User);
 
@@ -7,10 +7,12 @@
             alert("cannot submit empty comment");
             return;
         }
-        User.postComment($rootScope.currentUser.uid, id, content, function (res) {            
-            $scope.content = null;
-            $rootScope.$emit('refreshComment')
-        });
+        User.postComment($rootScope.currentUser.uid, id, content,
+                         $state.current.name, $scope.commentName,
+            function (res) {
+                $scope.content = null;
+                $rootScope.$emit('refreshComment')
+            });
     };
 
     $rootScope.$on('refreshComment', function () {

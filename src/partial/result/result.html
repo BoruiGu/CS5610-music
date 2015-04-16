@@ -12,38 +12,7 @@
     <div>
         <!-- Songs -->
         <div ng-show="activeTag=='song'">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-bordered table-layout-fixed">
-                        <thead>
-                            <tr>
-                                <th class="col-md-6">Song</th>
-                                <th class="col-md-3">Artist</th>
-                                <th class="col-md-3">Album</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="track in res.tracks.items">
-                                <td class="col-md-6">
-                                    <div class="result-overflow-hidden">
-                                        <a href="#/song/{{track.id}}">{{track.name}}</a>
-                                    </div>                                
-                                </td>
-                                <td class="col-md-3">
-                                    <div class="result-overflow-hidden">
-                                        {{track.artists | artists}}
-                                    </div>
-                                </td>
-                                <td class="col-md-3">
-                                    <div class="result-overflow-hidden">
-                                        {{track.album.name}}
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div ui-view="tracklist"></div>
         </div>
         <!-- Albums -->
         <div ng-show="activeTag=='album'">

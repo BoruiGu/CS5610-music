@@ -1,4 +1,17 @@
 ﻿app.factory('User', function ($http, $rootScope) {
+    function createEmptyMylist(uid) {
+        /* Create an empty mylist for the new user */
+        var newMylist = {
+            uid: uid,
+            list: JSON.stringify([])
+        };
+        console.log(newMylist);
+        $http.post('api/mylist/create', newMylist)
+        .success(function (response) {
+            //console.log("Created Empty Mylist: " + response);
+        });
+    }
+
     return {
         login: function (user, callback) {
             //TODO: HTTPS
@@ -40,16 +53,19 @@
         register: function (newUser, callback) {
             $http.post("api/register", newUser)
             .success(function (response) {
+                createEmptyMylist(response.uid);
                 callback(response);                
             });
         },
 
-        postComment: function (uid, id, content, callback) {
+        postComment: function (uid, id, content, type, name, callback) {
             console.log(new Date());
             var req = {
                 uid: uid,
                 id: id,
-                content: content
+                content: content,
+                type: type,
+                name: name
             };
             $http.post("api/comment", req)
             .success(function (response) {
@@ -102,6 +118,12 @@
                 uid2: uid2
             };
             $http.post('api/unfollow/', data).success(function (response) {
+                callback(response);
+            });
+        },
+
+        comments: function (uid, callback) {
+            $http.get('/api/comments/' + uid).success(function (response) {
                 callback(response);
             });
         }

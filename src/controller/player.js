@@ -4,7 +4,8 @@
     $scope.playerStarted = false;
     $scope.isPlaying = false;
     $scope.isPaused = false;
-    $scope.showVolumeSlider = false;    
+    $scope.showVolumeSlider = false;
+    $rootScope.mylist = [];
 
     function refreshPlaylist() {
         $rootScope.playlist = Playlist.getList();
@@ -68,7 +69,7 @@
     };
 
     $scope.playlistRemove = function (index) {
-        Playlist.remove(index);
+        Playlist.remove(index);        
     };
 
     $scope.playlistClicked = function (index) {

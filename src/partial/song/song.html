@@ -7,9 +7,13 @@
     </p>
     Album
     <p>{{song.album.name}}</p>
-    <button ng-click="play()" class="btn btn-success">Play</button>
-    <button ng-click="addToList()" class="btn btn-success">Add to Playlist</button>
-    <button class="btn btn-success">Favorite</button>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" ng-click="play()" class="btn btn-success">Play</button>
+        <button type="button" ng-click="addToList()" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>    
+    <button ng-show="loggedin" ng-click="addToMyList()" class="btn btn-success">Add to MyList</button>
     <br />
     <!-- Comment -->
     <div ui-view="comment"></div>

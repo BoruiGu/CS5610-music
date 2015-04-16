@@ -34,6 +34,8 @@ foreign key (uid) references user(uid)
 alter table comment add time datetime;
 alter table comment add commentid int primary key AUTO_INCREMENT;
 alter table comment modify column time TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP;
+alter table comment add type varchar(10) default 'song';
+alter table comment add name varchar(100);
 
 rename table playlist to mylist;
 
@@ -55,3 +57,5 @@ where uid in
 (select uid1 from follow where uid2 = 38);
 
 alter table mylist change content list varchar(65535);
+
+delete from user where username='tf4';

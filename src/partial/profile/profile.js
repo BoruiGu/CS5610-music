@@ -1,4 +1,8 @@
-﻿app.controller("ProfileCtrl", function ($scope, $state, $stateParams, $rootScope, User) {
+﻿app.controller("ProfileCtrl", function ($scope, $state, $stateParams, $rootScope, User, Mylist, $timeout) {
+    $scope.tracklist = {
+        items: null
+    };
+    $scope.activeTag = 'mylist';
     if ($state.current.name == 'profile') {
         console.log('state: profile');
         $scope.myProfile = false;
@@ -9,6 +13,7 @@
                 $state.go('search');
             }
             $scope.user = response;
+            $rootScope.$emit('profileReady');
         });
         User.loggedin(function (currentUser) {
             if (currentUser !== '0') {
@@ -39,12 +44,27 @@
             User.unfollow($rootScope.currentUser.uid, $scope.user.uid, function (response) {
                 $scope.following = false;
             });
-        };
+        };        
     }
 
     if ($state.current.name == 'myProfile') {
         console.log('state: myProfile');
         $scope.myProfile = true;
         $scope.user = $rootScope.currentUser;
+        $timeout(function () {
+            $rootScope.$emit('profileReady');
+        });
     }
+
+    $rootScope.$on('profileReady', function () {
+        console.log('profileReady');
+        Mylist.get($scope.user.uid, function (response) {
+            //console.log(response);
+            $scope.tracklist.items = response;
+        });
+        User.comments($scope.user.uid, function (response) {
+            console.log('comments: ' + response);
+            $scope.comments = response;
+        });
+    });
 });

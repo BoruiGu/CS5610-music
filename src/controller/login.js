@@ -1,4 +1,4 @@
-﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, User, $timeout) {
+﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, User, $timeout, Mylist) {
     updateScopeLoggedin($scope, User);
 
     $rootScope.$on('refreshLogin', function () {
@@ -16,8 +16,16 @@
                 /* Logged In */
                 console.log(response);
                 $scope.loggedin = true;
-                /* Refresh current view */
-                $state.go($state.current, /* for $stateParams */ {}, { reload: true });
+                /* Get Mylist */
+                Mylist.get(response.uid, function (response) {
+                    if (response) {
+                        $rootScope.mylist = response;
+                        console.log($rootScope.mylist);
+                    }
+
+                    /* Refresh current view */
+                    $state.go($state.current, /* for $stateParams */ {}, { reload: true });
+                });                
             }
         });
     };

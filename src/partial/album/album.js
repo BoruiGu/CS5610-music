@@ -2,5 +2,6 @@
     var id = $stateParams.id;
     API.getAlbum(id, function (res) {
         $scope.album = res;
+        $scope.commentName = res.name;
     });
 });

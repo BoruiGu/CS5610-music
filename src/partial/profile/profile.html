@@ -9,4 +9,23 @@
             <button ng-show="showUnfoBtn" ng-click="unfollow()" class="btn btn-danger">Unfollow</button>
         </div>
     </div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-click="activeTag='mylist'" role="presentation" class="active"><a href="" aria-controls="mylist" role="tab" data-toggle="tab">Mylist</a></li>
+        <li ng-click="activeTag='comment'" role="presentation"><a href="" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
+    </ul>
+    <!-- Tab content -->
+    <div>
+        <!-- Mylist -->
+        <div ng-show="activeTag=='mylist'">
+            <div ui-view="tracklist"></div>
+        </div>
+        <!-- Comment -->
+        <div ng-show="activeTag=='comment'">
+            <div ng-repeat="comment in comments | orderBy: 'time': true">
+                To <a href="#/{{comment.type}}/{{comment.id}}">{{comment.name}}</a> On {{comment.time | datetime}}:<br />
+                {{comment.content}}
+            </div>
+        </div>
+    </div>
 </div>

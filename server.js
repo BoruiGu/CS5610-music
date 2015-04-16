@@ -51,7 +51,10 @@ function (username, password, done) {
     //        }
     //    }
     var query = connection.query('SELECT * from user where username = ?', username, function (err, rows, fields) {
-        if (err) throw err;
+        if (err) { 
+            //throw err;
+            console.log('err in auth: ' + err);
+        }
         if ((rows.length == 0) || (username != rows[0].username) || !bcrypt.compareSync(password, rows[0].password)) {
             return done(null, false);
         }
@@ -83,7 +86,10 @@ app.get('/api/loggedin', function (req, res) {
     if (req.isAuthenticated()) {        
         connection.query('select uid from user where username = ?', req.user.username,
         function (err, rows, fields) {
-            if (err) throw err;        
+            if (err) {
+                //throw err;
+                console.log('err in loggedin: ' + err);
+            }
             var user = {
                 uid: rows[0].uid,
                 username: req.user.username
@@ -116,7 +122,7 @@ app.post('/api/register', function (req, res) {
         if (err) {
             res.json(err);
             return;
-        }
+        }        
         /* Successful */
         console.log(rows);
         req.login(newUser, function (err) {
@@ -220,6 +226,20 @@ app.get('/api/comment/:id', function (req, res) {
     });
 });
 
+/* Get comments from a certain user */
+app.get('/api/comments/:uid([0-9]+)', function (req, res) {
+    var uid = req.params.uid;
+    var queryString = 'select time, content, id, type, name '
+                    + 'from comment '
+                    + 'where uid = '
+                    + uid;
+    var query = connection.query(queryString,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+    //console.log(query.sql);
+});
+
 /* Follow a user */
 app.post('/api/follow', function (req, res) {
     connection.query('insert into follow SET ?', req.body,
@@ -260,4 +280,36 @@ app.get('/api/followed/:uid', function (req, res) {
     function (err, rows, fields) {
         res.json(rows);
     });
+});
+
+// MyList
+
+/* Get MyList */
+app.get('/api/mylist/:uid([0-9]+)', function (req, res) {
+    var uid = req.params.uid;
+    connection.query('select list from mylist where uid = ?', uid,
+    function (err, rows, fields) {
+        res.json(rows);
+    });
+});
+/* Update MyList */
+app.post('/api/mylist/:uid([0-9]+)', function (req, res) {
+    var uid = req.params.uid;    
+    var query = connection.query('update mylist SET list = ? where uid = '+uid,
+    [JSON.stringify(req.body)],
+    function (err, rows, fields) {
+        //console.log(rows);
+        res.send(200);
+    });
+    //console.log(query.sql);
+});
+
+app.post('/api/mylist/create', function (req, res) {
+    //console.log(req.body)
+    var query = connection.query('insert into mylist SET ?',
+    [req.body],
+    function (err, rows, fields) {
+        res.send(200);
+    });
+    //console.log(query.sql);
 });

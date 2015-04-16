@@ -3,5 +3,6 @@
     var query = $stateParams.query;
     API.search(query, /* limit */ 20, function (res) {
         $scope.res = res;
+        $scope.tracklist = res.tracks;
     });
 });
