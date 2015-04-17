@@ -1,4 +1,4 @@
-﻿app.factory('Player', function ($rootScope, $interval) {
+﻿app.factory('Player', function ($rootScope, $interval, $timeout) {
     var player = new Audio();
     var _progress = 0;
     var _duration = 0;
