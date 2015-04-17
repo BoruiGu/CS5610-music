@@ -1,4 +1,4 @@
-﻿app.factory('Player', function ($rootScope, $interval, $timeout) {
+﻿app.factory('Player', function ($rootScope, $interval) {
     var player = new Audio();
     var _progress = 0;
     var _duration = 0;
@@ -22,6 +22,9 @@
   
     return {
         startPlaying: function (url) {
+            player.src = '';
+            player.play();
+            player.pause();
             /* Simply set src property of player will act as if there
                are "multiple" instances of Audio, and multiple
                'loadedmetadata' | 'ended' events will fire at the same
@@ -40,10 +43,6 @@
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
                 player.play();
-                $timeout(function () {
-                    player.pause();
-                    player.play();
-                }, 100);
                 /* Cross-tab Comm */
                 localStorage.setItem("playAppId", $rootScope.appId);
                 setTick();
