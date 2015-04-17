@@ -1,4 +1,4 @@
-﻿app.controller("ProfileCtrl", function ($scope, $state, $stateParams, $rootScope, User, Mylist, $timeout) {
+﻿app.controller("ProfileCtrl", function ($scope, $state, $stateParams, $rootScope, User, Mylist, $timeout, Playlist, Player) {
     $scope.tracklist = {
         items: null
     };
@@ -63,8 +63,23 @@
             $scope.tracklist.items = response;
         });
         User.comments($scope.user.uid, function (response) {
-            console.log('comments: ' + response);
+            //console.log('comments: ' + response);
             $scope.comments = response;
         });
+
+        User.following($scope.user.uid, function (response) {
+            $scope.following = response;
+        });
+
+        User.followed($scope.user.uid, function (response) {
+            $scope.followed = response;
+        });
     });
+
+    $scope.MylistPlayAll = function () {
+        Playlist.clear();
+        Playlist.set($scope.tracklist.items);
+        var cur = Playlist.getCurrent();        
+        Player.startPlaying(cur.preview_url);
+    };
 });

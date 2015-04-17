@@ -5,8 +5,7 @@
     $scope.isPlaying = false;
     $scope.isPaused = false;
     $scope.showVolumeSlider = false;
-    $scope.showPlaylistAddedMsg = false;
-    $rootScope.mylist = [];
+    $scope.showPlaylistAddedMsg = false;    
 
     function refreshPlaylist() {
         $rootScope.playlist = Playlist.getList();

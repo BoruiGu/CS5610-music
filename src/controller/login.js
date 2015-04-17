@@ -1,4 +1,5 @@
 ﻿app.controller("LoginCtrl", function ($scope, $http, $state, $rootScope, User, $timeout, Mylist) {
+    $scope.showMylistAddedMsg = false;
     updateScopeLoggedin($scope, User);
 
     $rootScope.$on('refreshLogin', function () {
@@ -16,16 +17,8 @@
                 /* Logged In */
                 console.log(response);
                 $scope.loggedin = true;
-                /* Get Mylist */
-                Mylist.get(response.uid, function (response) {
-                    if (response) {
-                        $rootScope.mylist = response;
-                        console.log($rootScope.mylist);
-                    }
-
-                    /* Refresh current view */
-                    $state.go($state.current, /* for $stateParams */ {}, { reload: true });
-                });                
+                /* Refresh current view */
+                $state.go($state.current, /* for $stateParams */ {}, { reload: true });
             }
         });
     };
@@ -47,7 +40,7 @@
     $scope.blur = function () {
         $scope.focusLogin = false;
         $scope.loginClass = null;
-    }
+    }    
 });
 
 function updateScopeLoggedin($scope, User) {
@@ -57,5 +50,5 @@ function updateScopeLoggedin($scope, User) {
         } else {
             $scope.loggedin = false;
         }
-    });
+    });    
 }

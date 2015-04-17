@@ -28,7 +28,8 @@
                time. Each time src is set, number of "instances"++ 
                (Chrome 42.0.2311.90 m)
                For a workaround, pause and create a fresh new Audio(),
-               presumably GC will do the clean up */
+               presumably GC will do the clean up
+               (No reference to the object) */
             player.pause();
             player = new Audio();
             _progress = 0;

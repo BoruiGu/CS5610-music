@@ -76,6 +76,19 @@ body {
     padding-top: 70px;
 }
 
+.mylist-added-msg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    background-color: #252525;
+    width: 152px;
+    height: 49px;
+    text-align: center;
+    line-height: 49px;
+}
+
 .navbar-player {
     height: 45px;
     min-height: 45px;

@@ -20,7 +20,8 @@
             preview_url: $scope.song.preview_url,
             artists: $scope.song.artists,
             album: {
-                name: $scope.song.album.name
+                name: $scope.song.album.name,
+                id: $scope.song.album.id
             }
         }
         return e;
@@ -45,9 +46,7 @@
     };
 
     $scope.addToMyList = function () {
-        var msg = Mylist.add($rootScope.currentUser.uid, createListItem());
-        if (typeof msg == 'string') {
-            alert(msg);
-        }
+        Mylist.add($rootScope.currentUser.uid, createListItem());
+        $rootScope.$emit('itemAddedToMylist');        
     }
 });

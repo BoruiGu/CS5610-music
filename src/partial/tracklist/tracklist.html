@@ -16,14 +16,14 @@
                         </div>
                     </td>
                     <td class="col-md-3">
-                        <div class="result-overflow-hidden">
+                        <a href="#/artist/{{track.artists[0].id}}" class="result-overflow-hidden">
                             {{track.artists | artists}}
-                        </div>
+                        </a>
                     </td>
                     <td ng-show="track.album" class="col-md-3">
-                        <div class="result-overflow-hidden">
+                        <a href="#/album/{{track.album.id}}" class="result-overflow-hidden">
                             {{track.album.name}}
-                        </div>
+                        </a>
                     </td>
                 </tr>
             </tbody>

@@ -1,5 +1,5 @@
 ﻿app.factory('Playlist', function ($rootScope, Player) {
-    /* List of {id, name, preview_url, artists[], album.name} */
+    /* List of {id, name, preview_url, artists[], album.name, album.id} */
     var itemStr = 'playlist';
     /* Load playlist from localStorage */
     var list = JSON.parse(localStorage.getItem(itemStr));
@@ -69,8 +69,8 @@
         remove: function (index) {
             list.splice(index, 1);
             $rootScope.$emit('playlistUpdated');
-            console.log(pos);
-            console.log(index);            
+            //console.log(pos);
+            //console.log(index);            
             if (index == pos) {
                 /* Remove current track */
 
@@ -108,6 +108,15 @@
             list = [];
             pos = 0;
             /* Save playlist to localStorage */
+            localStorage.setItem(itemStr, JSON.stringify(list));
+            $rootScope.$emit('playlistUpdated');
+            $rootScope.$emit('playlistProgress');
+        },
+
+        set: function (l) {
+            /* Clone the array */
+            list = l.slice();
+            pos = 0;
             localStorage.setItem(itemStr, JSON.stringify(list));
             $rootScope.$emit('playlistUpdated');
             $rootScope.$emit('playlistProgress');
