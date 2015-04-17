@@ -35,12 +35,12 @@
             _progress = 0;
             player.src = url;
             player.volume = _volume / 100.0;
+            player.play();
+            player.pause();
 
             player.addEventListener('loadedmetadata', function () {
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
-                player.play();
-                player.pause();
                 player.play();
                 /* Cross-tab Comm */
                 localStorage.setItem("playAppId", $rootScope.appId);
