@@ -22,10 +22,6 @@
   
     return {
         startPlaying: function (url) {
-            player.src = '';
-            player.play();
-            player.pause();
-
             /* Simply set src property of player will act as if there
                are "multiple" instances of Audio, and multiple
                'loadedmetadata' | 'ended' events will fire at the same
@@ -43,6 +39,8 @@
             player.addEventListener('loadedmetadata', function () {
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
+                player.play();
+                player.pause();
                 player.play();
                 /* Cross-tab Comm */
                 localStorage.setItem("playAppId", $rootScope.appId);
