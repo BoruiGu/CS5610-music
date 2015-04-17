@@ -1,12 +1,16 @@
 ﻿<div class="row">
-    <div ng-repeat="item in thumbnail.items" class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-            <a href="#/{{type}}/{{item.id}}">
-                <img class="resultMG" src="{{item.images[1].url | cover}}" alt="{{type}} Cover">
-            </a>
-            <div class="caption">
-                <a href="#/album/{{item.id}}" class="result-overflow-hidden">{{item.name}}</a>
+    <div class="col-md-12">
+        <div ng-show="thumbnail.items.length" ng-repeat="item in thumbnail.items" class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <a href="#/{{type}}/{{item.id}}">
+                    <img class="resultMG" src="{{item.images[1].url | cover}}" alt="{{type}} Cover">
+                </a>
+                <div class="caption">
+                    <a href="#/album/{{item.id}}" class="result-overflow-hidden">{{item.name}}</a>
+                </div>
             </div>
         </div>
+        <!-- No Result -->
+        <p ng-hide="thumbnail.items.length">No Result</p>
     </div>
 </div>

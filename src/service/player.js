@@ -40,6 +40,8 @@
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
                 player.play();
+                /* Cross-tab Comm */
+                localStorage.setItem("playAppId", $rootScope.appId);
                 setTick();
                 _playerStarted = true;
                 _isPlaying = true;
@@ -70,6 +72,8 @@
 
         resume: function () {
             player.play();
+            /* Cross-tab Comm */
+            localStorage.setItem("playAppId", $rootScope.appId);
             setTick();
             _isPlaying = true;
             _isPaused = false;

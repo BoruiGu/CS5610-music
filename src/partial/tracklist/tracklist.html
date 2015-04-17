@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered table-layout-fixed">
+        <table ng-show="tracklist.items.length" class="table table-bordered table-layout-fixed">
             <thead>
                 <tr>
                     <th class="col-md-6">Song</th>
@@ -35,5 +35,7 @@
                 </tr>
             </tbody>
         </table>
+        <!-- No Result -->
+        <p ng-hide="tracklist.items.length">No Result</p>
     </div>
 </div>
