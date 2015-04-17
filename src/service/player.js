@@ -35,6 +35,9 @@
             _progress = 0;
             player.src = url;
             player.volume = _volume / 100.0;
+            /* On mobile preload property may be invalid,
+               cause loadedmetadata event not firing.
+               For a workaround, play and immediately pause */
             player.play();
             player.pause();
 
