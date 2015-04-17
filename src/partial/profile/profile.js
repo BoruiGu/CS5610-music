@@ -21,7 +21,7 @@
                 $scope.following = false;
                 /* Logged In, Check if Current User is following this user */
                 if (currentUser.uid != $scope.user.uid) {
-                    User.following(currentUser.uid, function (response) {
+                    User.following(currentUser.uid, function (response) {                        
                         for (var i = 0; i < response.length; i++) {
                             if (response[i].uid == $scope.user.uid) {
                                 $scope.following = true;
@@ -68,11 +68,11 @@
         });
 
         User.following($scope.user.uid, function (response) {
-            $scope.following = response;
+            $scope.followingUsers = response;
         });
 
         User.followed($scope.user.uid, function (response) {
-            $scope.followed = response;
+            $scope.followers = response;
         });
     });
 
