@@ -1,4 +1,5 @@
 ﻿app.controller("SearchCtrl", function ($scope, $http, API, $location, $timeout, $state) {
+    $scope.ACRes = null;
     $scope.search = function (query) {
         $location.path("search/" + query);
     };
