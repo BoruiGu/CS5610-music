@@ -4,10 +4,10 @@
     <div class="following">
         <div class="dropdown">
             <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                {{following.length}}
+                {{followingUsers.length}}
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li ng-repeat="user in following" role="presentation">
+                <li ng-repeat="user in followingUsers" role="presentation">
                     <a role="menuitem" tabindex="-1" href="#/profile/{{user.uid}}">{{user.username}}</a>
                 </li>
             </ul>
@@ -17,10 +17,10 @@
     <div class="followed">
         <div class="dropdown">
             <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
-                {{followed.length}}
+                {{followers.length}}
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-                <li ng-repeat="user in followed" role="presentation">
+                <li ng-repeat="user in followers" role="presentation">
                     <a role="menuitem" tabindex="-1" href="#/profile/{{user.uid}}">{{user.username}}</a>
                 </li>
             </ul>
