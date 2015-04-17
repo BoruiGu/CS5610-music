@@ -40,10 +40,6 @@
                 console.log('player loadedmetadata');
                 _duration = player.duration * 1000.0;
                 player.play();
-                $timeout(function () {
-                    player.pause();
-                    player.play();
-                }, 100);
                 /* Cross-tab Comm */
                 localStorage.setItem("playAppId", $rootScope.appId);
                 setTick();
