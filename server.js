@@ -43,13 +43,6 @@ app.listen(port, ip);
 /* Authentication */
 passport.use(new LocalStrategy(
 function (username, password, done) {
-    //    for(var u in users)
-    //    {
-    //        if(username == users[u].username && password == users[u].password)
-    //        {
-    //            return done(null, users[u]);
-    //        }
-    //    }
     var query = connection.query('SELECT * from user where username = ?', username, function (err, rows, fields) {
         if (err) { 
             //throw err;
@@ -145,53 +138,6 @@ var auth = function (req, res, next) {
     else
         next();
 };
-
-/* List all users */
-app.get("/rest/user", auth, function (req, res) {
-    // UserModel.find(function (err, users) {
-    //     res.json(users);
-    // });
-});
-
-/* Remove a user */
-app.delete("/rest/user/:id", auth, function (req, res) {
-    // UserModel.findById(req.params.id, function (err, user) {
-    //     user.remove(function (err, count) {
-    //         UserModel.find(function (err, users) {
-    //             res.json(users);
-    //         });
-    //     });
-    // });
-});
-
-app.put("/rest/user/:id", auth, function (req, res) {
-    // UserModel.findById(req.params.id, function (err, user) {
-    //     user.update(req.body, function (err, count) {
-    //         UserModel.find(function (err, users) {
-    //             res.json(users);
-    //         });
-    //     });
-    // });
-});
-
-/* create a new user?? */
-app.post("/rest/user", auth, function (req, res) {
-    // UserModel.findOne({ username: req.body.username }, function (err, user) {
-    //     if (user == null) {
-    //         user = new UserModel(req.body);
-    //         user.save(function (err, user) {
-    //             UserModel.find(function (err, users) {
-    //                 res.json(users);
-    //             });
-    //         });
-    //     }
-    //     else {
-    //         UserModel.find(function (err, users) {
-    //             res.json(users);
-    //         });
-    //     }
-    // });
-});
 
 /* Retrieve basic user info by uid */
 app.get('/api/userinfo/:uid', function (req, res) {

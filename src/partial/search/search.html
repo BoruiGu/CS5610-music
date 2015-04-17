@@ -1,8 +1,6 @@
-﻿<div>
+﻿<div ng-class="isNested ? null : 'fixed-golden-ratio'">
     <div class="searchBoxWrap row">
-        <!-- Center only if we are in our own state -->
-        <div ng-if="!isNested" class="col-md-3"></div>
-        <div class="col-md-6">
+        <div ng-class="isNested ? 'col-md-6' : 'col-md-12'">
             <form class="dropdown" ng-submit="search(query)">
                 <div class="input-group">
                     <input ng-change="autoComplete(query)" ng-model="query" class="form-control" title="Please enter a search query" placeholder="Search for tracks, albums & artists" type="text" />
@@ -42,5 +40,4 @@
         </div>
     </div>
     <!--Ends Search Box Wrap-->
-    <div ng-if="!isNested" class="col-md-3"></div>
 </div>

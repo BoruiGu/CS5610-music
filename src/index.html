@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>
     <script src="app.js"></script>
     <script src="service/api.js"></script>
@@ -36,21 +36,28 @@
     <link rel="stylesheet" href="css/app.css" />
 </head>
 <body ng-app="MusicApp" ng-controller="HomeCtrl">
-        
     <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginCtrl">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-collapse" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar">Text 1</span>
-                    <span class="icon-bar">Text 2</span>
-                    <span class="icon-bar">Text 3</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/">Project name</a>
+                <a class="navbar-brand" href="#/">MusicApp</a>
             </div>
-            <!-- Log In -->
-            <div ng-if="!loggedin" id="navbar" class="navbar-collapse collapse">
-                <form ng-submit="login(user)" class="navbar-form navbar-right">
+
+            <div class="collapse navbar-collapse" id="my-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="https://github.com/BoruiGu/CS5610-music">Git</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+                <ul ng-if="!loggedin" class="nav navbar-nav navbar-right">
+                    <li><a href="#/register">Register</a></li>
+                </ul>
+                <!-- Log In -->
+                <form ng-if="!loggedin" ng-submit="login(user)" class="navbar-form navbar-right">
                     <div ng-class="loginClass" class="form-group">
                         <input ng-model="user.username" ng-blur="blur()" focus-on="focusLogin" type="text" placeholder="Username" class="form-control">
                     </div>
@@ -59,23 +66,21 @@
                     </div>
                     <button type="submit" class="btn btn-success">Sign in</button>
                 </form>
-            </div><!--/.navbar-collapse -->
-
-            <!-- Logged Int -->
-            <div ng-if="loggedin" id="navbar" class="navbar-collapse collapse">
-                <div class="navbar-right">
-                    <a class="navbar-brand" href="#/profile">Profile</a>
-                    <button class="btn btn-danger navbar-right" ng-click="logout()" class="btn btn-success">Sign Out</button>
-                </div>
-            </div><!--/.navbar-collapse -->            
+                <!-- Logged In -->
+                <ul ng-if="loggedin" class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#/profile">Profile</a></li>
+                    <li><a href="" ng-click="logout()">Sign Out</a></li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
         </div>
-    </nav>    
-    
-    <div class="container" ui-view>
-        
-    </div>    
+    </nav>
 
-    <span ng-show="showMylistAddedMsg" class="mylist-added-msg">Added to MyList</span>
+    <div class="container" ui-view>
+
+    </div>
+
+    <span ng-show="showMylistAddedMsg" class="mylist-added-msg fixed-center">Added to MyList</span>
 
     <!-- Player -->
     <nav class="navbar navbar-inverse navbar-fixed-bottom navbar-player" ng-controller="PlayerCtrl">
@@ -108,12 +113,12 @@
                         {{playlist.length}}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li ng-class="(position == $index) ? 'active' : null" 
-                            ng-mouseenter="showTrash = true" 
-                            ng-mouseleave="showTrash = false" 
-                            ng-if=" playlist.length" 
+                        <li ng-class="(position == $index) ? 'active' : null"
+                            ng-mouseenter="showTrash = true"
+                            ng-mouseleave="showTrash = false"
+                            ng-if=" playlist.length"
                             ng-repeat="playlistItem in playlist track by playlistItem.id">
-                            
+
                             <a ng-click="playlistClicked($index)" href="">
                                 {{playlistItem.name}}
                                 <span ng-click="playlistRemove($index)" ng-show="showTrash" class="glyphicon glyphicon-trash"></span>
@@ -124,7 +129,7 @@
                             <a>Playlist is empty</a>
                         </li>
                     </ul>
-                </div> <!-- Ends Playlist dropup -->                
+                </div> <!-- Ends Playlist dropup -->
                 <!-- New Item Added Message -->
                 <span ng-show="showPlaylistAddedMsg" class="playlist-added-msg">Added to playlist</span>
             </div><!-- Ends PlayerWrap -->
