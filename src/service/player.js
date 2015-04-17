@@ -22,6 +22,10 @@
   
     return {
         startPlaying: function (url) {
+            player.src = '';
+            player.play();
+            player.pause();
+
             /* Simply set src property of player will act as if there
                are "multiple" instances of Audio, and multiple
                'loadedmetadata' | 'ended' events will fire at the same
