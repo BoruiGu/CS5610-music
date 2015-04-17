@@ -51,7 +51,7 @@
         },
         
         getArtistTopTracks: function (id, callback) {
-            var queryUrl = baseURL + "artists/" + id + "/top-tracks";
+            var queryUrl = baseURL + "artists/" + id + "/top-tracks?country=US";
             $http.get(queryUrl).success(function (res) {
                 callback(res);
             });

@@ -1,10 +1,22 @@
 ﻿<div>
     <img src="{{artist.images[1].url | cover}}" alt="Artist Image">
     <p>{{artist.name}}</p>
-    Albums
-    <p>Use getArtistAlbums</p>
-    Top Tracks
-    Related Artists
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-click="activeTag='toptrack'" role="presentation" class="active"><a href="" aria-controls="home" role="tab" data-toggle="tab">Top Tracks</a></li>
+        <li ng-click="activeTag='album'" role="presentation"><a href="" aria-controls="messages" role="tab" data-toggle="tab">Albums</a></li>
+    </ul>
+    <!-- Tab content -->
+    <div>
+        <!-- Songs -->
+        <div ng-show="activeTag=='toptrack'">
+            <div ui-view="tracklist"></div>
+        </div>
+        <!-- Albums -->
+        <div ng-show="activeTag=='album'">
+            <div ui-view="thumbnail"></div>
+        </div>
+    </div>
     <!-- Comment -->
     <div ui-view="comment"></div>
 </div>

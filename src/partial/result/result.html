@@ -16,29 +16,11 @@
         </div>
         <!-- Albums -->
         <div ng-show="activeTag=='album'">
-            <div class="row">
-                <div ng-repeat="album in res.albums.items" class="col-xs-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="{{album.images[1].url | cover}}" alt="Album Cover">
-                        <div class="caption">
-                            <div class="result-overflow-hidden">{{album.name}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div ui-view="thumbnail"></div>
         </div>
         <!-- Artists -->
         <div ng-show="activeTag=='artist'">
-            <div class="row">
-                <div ng-repeat="artist in res.artists.items" class="col-xs-6 col-md-3">
-                    <div class="thumbnail">                        
-                        <img src="{{artist.images[1].url | cover}}" alt="Artist Image">
-                        <div class="caption">
-                            <div class="result-overflow-hidden">{{artist.name}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div ui-view="thumbnail"></div>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
                 <tr>
                     <th class="col-md-6">Song</th>
                     <th class="col-md-3">Artist</th>
-                    <th class="col-md-3">Album</th>
+                    <th ng-show="tracklist.items[0].album || tracklist.items[1].album" class="col-md-3">Album</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                             {{track.artists | artists}}
                         </div>
                     </td>
-                    <td class="col-md-3">
+                    <td ng-show="track.album" class="col-md-3">
                         <div class="result-overflow-hidden">
                             {{track.album.name}}
                         </div>

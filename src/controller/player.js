@@ -1,10 +1,11 @@
-﻿app.controller("PlayerCtrl", function ($scope, $rootScope, Player, Playlist) {    
+﻿app.controller("PlayerCtrl", function ($scope, $rootScope, Player, Playlist, $timeout) {    
     $scope.progress = 0;
     $scope.volume = 100;
     $scope.playerStarted = false;
     $scope.isPlaying = false;
     $scope.isPaused = false;
     $scope.showVolumeSlider = false;
+    $scope.showPlaylistAddedMsg = false;
     $rootScope.mylist = [];
 
     function refreshPlaylist() {
@@ -97,5 +98,12 @@
 
     $rootScope.$on('playerEnded', function () {
         playChange(/*rel*/ 1, /*stopAtEnd*/ true);
+    });
+
+    $rootScope.$on('itemAddedToPlaylist', function () {
+        $scope.showPlaylistAddedMsg = true;
+        $timeout(function () {
+            $scope.showPlaylistAddedMsg = false;
+        }, 1200);
     });
 });

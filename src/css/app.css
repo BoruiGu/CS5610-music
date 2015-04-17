@@ -146,6 +146,19 @@ body {
             top: 5px;
         }
 
+    .playerWrap .playlist-added-msg {
+        background: url(http://s2.music.126.net/style/web2/img/frame/playbar.png) no-repeat 0 9999px;
+        background-position: 0 -287px;
+        width: 152px;
+        height: 49px;
+        text-align: center;
+        line-height: 37px;
+        color: #ffffff;
+        position: absolute;
+        right: -20px;
+        top: -50px;
+    }
+
 #volumeSlider {
     position: absolute;
     right: 60px;
@@ -172,8 +185,14 @@ body {
 
 /* Result */
 .result-overflow-hidden {
+    display: block;
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.thumbnail .resultMG{
+    width: 252px;
+    height: 252px;
 }

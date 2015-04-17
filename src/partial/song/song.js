@@ -26,8 +26,9 @@
         return e;
     }
 
-    function addToList () {        
-        return Playlist.add(createListItem());
+    function addToList() {
+        $rootScope.$emit('itemAddedToPlaylist');
+        return Playlist.add(createListItem());        
     }
 
     $scope.play = function () {

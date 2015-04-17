@@ -56,6 +56,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
 		        'tracklist@result': {
 		            templateUrl: 'partial/tracklist/tracklist.html',
 		            controller: 'TracklistCtrl'
+		        },
+
+		        'thumbnail@result': {
+		            templateUrl: 'partial/thumbnail/thumbnail.html'
 		        }
             }
         })
@@ -79,6 +83,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     templateUrl: 'partial/album/album.html',
                     controller: 'AlbumCtrl'
                 },
+                'tracklist@album': {
+                    templateUrl: 'partial/tracklist/tracklist.html',
+                    controller: 'TracklistCtrl'
+                },
                 'comment@album': {
                     templateUrl: 'partial/comment/comment.html',
                     controller: 'CommentCtrl'
@@ -91,6 +99,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 '': {
                     templateUrl: 'partial/artist/artist.html',
                     controller: 'ArtistCtrl'
+                },
+                'tracklist@artist': {
+                    templateUrl: 'partial/tracklist/tracklist.html',
+                    controller: 'TracklistCtrl'
+                },
+                'thumbnail@artist': {
+                    templateUrl: 'partial/thumbnail/thumbnail.html'
                 },
                 'comment@artist': {
                     templateUrl: 'partial/comment/comment.html',

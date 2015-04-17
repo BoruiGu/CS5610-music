@@ -8,12 +8,8 @@
     Release Date
     <p>{{album.release_date}}</p>
     <p>Play All</p>
-    Tracks
-    <p ng-repeat="track in album.tracks.items">
-        {{track.name}}
-		{{track.artists | artists}}
-        {{album.name}}
-    </p>
+    <!-- Tracks -->
+    <div ui-view="tracklist"></div>
     <!-- Comment -->
     <div ui-view="comment"></div>
 </div>
