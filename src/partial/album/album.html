@@ -2,12 +2,12 @@
     <img src="{{album.images[1].url | cover}}" alt="Album Cover">
     <p>{{album.name}}</p>
     Artist
-    <p ng-repeat="artist in album.artists">
-        {{artist.name}}
-    </p>
+    <a href="#/artist/{{album.artists[0].id}}">
+        {{album.artists | artists}}
+    </a>
     Release Date
     <p>{{album.release_date}}</p>
-    <p>Play All</p>
+    <button ng-click="PlayAll()" class="btn btn-primary">Play All</button>
     <!-- Tracks -->
     <div ui-view="tracklist"></div>
     <!-- Comment -->

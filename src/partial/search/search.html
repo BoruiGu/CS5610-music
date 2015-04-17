@@ -1,43 +1,43 @@
 ﻿<div>
-    <div class="searchBoxWrap row">     
-        <!-- Center only if we are in our own state -->   
+    <div class="searchBoxWrap row">
+        <!-- Center only if we are in our own state -->
         <div ng-if="!isNested" class="col-md-3"></div>
         <div class="col-md-6">
-            <form ng-submit="search(query)">
+            <form class="dropdown" ng-submit="search(query)">
                 <div class="input-group">
                     <input ng-change="autoComplete(query)" ng-model="query" class="form-control" title="Please enter a search query" placeholder="Search for tracks" type="text" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Search</button>
                     </span>
                 </div>
-                <table class="searchSuggestion table table-striped">
-                    <tbody>
-                        <tr ng-repeat="item in ACRes.tracks.items">
-                            <td ng-if="$first" rowspan="{{ACRes.tracks.items.length}}">Track</td>
-                            <td>
-                                <a href="#/song/{{item.id}}">
-                                    {{item.name}} - {{item.artists | artists}}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in ACRes.albums.items">
-                            <td ng-if="$first" rowspan="{{ACRes.albums.items.length}}">Album</td>
-                            <td>
-                                <a href="#/album/{{item.id}}">
-                                    {{item.name}}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in ACRes.artists.items">
-                            <td ng-if="$first" rowspan="{{ACRes.artists.items.length}}">Artist</td>
-                            <td>
-                                <a href="#/artist/{{item.id}}">
-                                    {{item.name}}
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Dummy dropdown trigger; Actual work in JS -->
+                <a ng-hide="true" class="dropdown-toggle" id="dropdownMenu1" href="#"></a>
+                <!-- Auto Complete / Search Suggestion -->
+                <ul ng-show="ACRes" class="dropdown-menu searchSuggestion" role="menu" aria-labelledby="dropdownMenu1">
+                    <!-- Tracks -->
+                    <li role="presentation" class="dropdown-header">Tracks</li>
+                    <li ng-repeat="item in ACRes.tracks.items" tabindex="-1">
+                        <a href="#/song/{{item.id}}">
+                            {{item.name}} - {{item.artists | artists}}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <!-- Albums -->
+                    <li role="presentation" class="dropdown-header">Albums</li>
+                    <li ng-repeat="item in ACRes.albums.items" tabindex="-1">
+                        <a href="#/album/{{item.id}}">
+                            {{item.name}}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <!-- Artists -->
+                    <li role="presentation" class="dropdown-header">Artists</li>
+                    <li ng-repeat="item in ACRes.artists.items" tabindex="-1">
+                        <a href="#/artist/{{item.id}}">
+                            {{item.name}}
+                        </a>
+                    </li>
+                </ul>
             </form>
         </div>
     </div>

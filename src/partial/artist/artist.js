@@ -1,4 +1,4 @@
-﻿app.controller("ArtistCtrl", function ($scope, $stateParams, API) {
+﻿app.controller("ArtistCtrl", function ($scope, $stateParams, API, Player, Playlist) {
     $scope.activeTag = 'toptrack'
     var id = $stateParams.id;
     API.getArtist(id, function (res) {
@@ -17,4 +17,11 @@
         $scope.thumbnail = res;
         $scope.type = 'album';
     });
+
+    $scope.PlayAll = function () {
+        Playlist.clear();
+        Playlist.set($scope.tracklist.items);
+        var cur = Playlist.getCurrent();
+        Player.startPlaying(cur.preview_url);
+    };
 });

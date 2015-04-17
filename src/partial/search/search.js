@@ -2,6 +2,11 @@
     $scope.search = function (query) {
         $location.path("search/" + query);
     };
+
+    /* Always have dropdown opened, let ng-show decide show/hide */
+    $(function () {
+        $("a.dropdown-toggle").dropdown("toggle");
+    });
     
     $scope.isNested = $state.current.name != 'search';
 
