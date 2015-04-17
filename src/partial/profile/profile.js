@@ -38,11 +38,19 @@
         $scope.follow = function () {
             User.follow($rootScope.currentUser.uid, $scope.user.uid, function (response) {
                 $scope.following = true;
+                /* Refresh follower list */
+                User.followed($scope.user.uid, function (response) {
+                    $scope.followers = response;
+                });
             });
         };
         $scope.unfollow = function () {
             User.unfollow($rootScope.currentUser.uid, $scope.user.uid, function (response) {
                 $scope.following = false;
+                /* Refresh follower list */
+                User.followed($scope.user.uid, function (response) {
+                    $scope.followers = response;
+                });
             });
         };        
     }
