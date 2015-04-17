@@ -37,8 +37,27 @@
             });
         },
 
-        remove: function (index) {
-            //$rootScope.mylist
+        remove: function (uid, id) {
+            getMylist(uid, function (mylist) {
+                var index = -1;
+                mylist.some(function (element, idx) {
+                    if (element.id == id) {
+                        index = idx;
+                        return true;
+                    }
+                    return false;
+                });
+                if (index == -1) {
+                    /* Cant find item in mylist */
+                    return;
+                }
+                mylist.splice(index, 1);
+                var list = JSON.stringify(mylist);
+                $http.post('api/mylist/' + uid, list)
+                .success(function () {
+                    $rootScope.$emit('mylistUpdated');
+                });
+            });
         },
 
         get: function (uid, callback) {

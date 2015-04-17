@@ -114,7 +114,7 @@
         },
 
         set: function (l) {
-            /* Clone the array */
+            /* Clone the array as arrays are passed by reference */
             list = l.slice();
             pos = 0;
             localStorage.setItem(itemStr, JSON.stringify(list));

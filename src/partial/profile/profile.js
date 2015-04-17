@@ -82,4 +82,10 @@
         var cur = Playlist.getCurrent();        
         Player.startPlaying(cur.preview_url);
     };
+
+    $rootScope.$on('mylistUpdated', function () {
+        Mylist.get($scope.user.uid, function (response) {
+            $scope.tracklist.items = response;
+        });
+    });
 });
