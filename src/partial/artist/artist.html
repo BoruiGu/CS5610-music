@@ -1,6 +1,9 @@
 ﻿<div>
-    <img src="{{artist.images[1].url | cover}}" alt="Artist Image">
-    <p>{{artist.name}}</p>
+    <div class="artist-banner">
+        <img class="artist-cover-image img-responsive" src="{{artist.images[0].url | cover}}" alt="Artist Image">
+        <p>{{artist.name}}</p>
+    </div>
+    
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li ng-click="activeTag='toptrack'" role="presentation" class="active"><a href="" aria-controls="home" role="tab" data-toggle="tab">Top Tracks</a></li>

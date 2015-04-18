@@ -329,3 +329,20 @@ body {
 .media {
     margin-bottom: 15px;
 }
+
+.artist-banner {
+    position: relative;
+}
+
+    .artist-banner .artist-cover-image {
+        max-height: 300px;
+    }
+
+    .artist-banner p {
+        position: absolute;
+        bottom: 0px;
+        left: 10px;
+        color: #ffffff;
+        font-size: 44px;
+        text-shadow: 3px 3px 4px rgba(150, 150, 150, 0.75);
+    }
