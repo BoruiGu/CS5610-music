@@ -1,11 +1,11 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        <table ng-show="tracklist.items.length" class="table table-bordered table-layout-fixed">
+        <table ng-show="tracklist.items.length" class="table table-bordered table-striped table-layout-fixed">
             <thead>
                 <tr>
                     <th class="col-md-6">Song</th>
                     <th class="col-md-3">Artist</th>
-                    <th ng-show="tracklist.items[0].album || tracklist.items[1].album" class="col-md-3">Album</th>
+                    <th class="visible-md visible-lg" ng-show="tracklist.items[0].album || tracklist.items[1].album" class="col-md-3">Album</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                             {{track.artists | artists}}
                         </a>
                     </td>
-                    <td ng-show="track.album" class="col-md-3">
+                    <td class="visible-md visible-lg col-md-3" ng-show="track.album">
                         <a href="#/album/{{track.album.id}}" class="result-overflow-hidden">
                             {{track.album.name}}
                         </a>

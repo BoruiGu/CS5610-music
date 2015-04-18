@@ -1,20 +1,20 @@
-﻿<div>
-    <p>Comment</p>
+﻿<div>    
     <div>
         <!-- ng-if will create a child scope, 
              and models of child scope are inaccessible from parent -->
         <form ng-show="currentUser" ng-submit="postComment(content)">
-            <textarea ng-model="content" class="form-control"></textarea>
+            <textarea class="form-control" rows="3" ng-model="content" class="form-control"></textarea>
             <button type="submit" class="btn btn-success">Post Comment</button>
         </form>
-        <textarea disabled ng-show="!currentUser"></textarea>
+        <textarea class="form-control" rows="3" disabled ng-show="!currentUser"></textarea>
         <p ng-show="!currentUser">
             please <a ng-click="setLoginFocus()" href="">sign in</a> to comment
         </p>
     </div>
+    <p>Comments: </p>
     <p ng-show="!comments.length">Be the first to post a comment!</p>
     <!-- true in orderBy sets reverse order -->
-    <div ng-show="comments.length" ng-repeat="comment in comments | orderBy: 'time': true">
+    <div class="div-comment" ng-show="comments.length" ng-repeat="comment in comments | orderBy: 'time': true">
         User:<a href="#/profile/{{comment.uid}}">{{comment.username}}</a> On {{comment.time | datetime}}:<br />
         {{comment.content}}
     </div>

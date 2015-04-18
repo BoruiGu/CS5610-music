@@ -301,7 +301,14 @@ body {
     text-overflow: ellipsis;
 }
 
+
 .thumbnail .resultMG {
     width: 252px;
     height: 252px;
+}
+
+.div-comment{
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

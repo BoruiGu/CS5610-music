@@ -40,14 +40,14 @@
     </ul>
     <!-- Tab content -->
     <div>
-        <!-- Mylist -->
-        <button ng-click="MylistPlayAll()" class="btn btn-primary">Play All</button>
+        <!-- Mylist -->        
         <div ng-show="activeTag=='mylist'">
+            <button ng-click="MylistPlayAll()" class="btn btn-primary">Play All</button>
             <div ui-view="tracklist"></div>
         </div>
         <!-- Comment -->
         <div ng-show="activeTag=='comment'">
-            <div ng-repeat="comment in comments | orderBy: 'time': true">
+            <div class="div-comment" ng-repeat="comment in comments | orderBy: 'time': true">
                 To <a href="#/{{comment.type}}/{{comment.id}}">{{comment.name}}</a> On {{comment.time | datetime}}:<br />
                 {{comment.content}}
             </div>
