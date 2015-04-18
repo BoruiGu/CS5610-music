@@ -3,6 +3,7 @@
     API.getTrack(id, function (res) {
         $scope.song = res;
         $scope.commentName = res.name;
+        $rootScope.title = res.name;
     });
 
     User.loggedin(function (currentUser) {

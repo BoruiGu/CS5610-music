@@ -66,6 +66,7 @@
 
     $rootScope.$on('profileReady', function () {
         console.log('profileReady');
+        $rootScope.title = $scope.user.username + "'s Profile";
         Mylist.get($scope.user.uid, function (response) {
             //console.log(response);
             $scope.tracklist.items = response;

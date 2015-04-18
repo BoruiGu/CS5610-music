@@ -1,6 +1,6 @@
 ﻿app.controller("RegisterCtrl", function ($scope, $stateParams, User, $state, $rootScope) {
     var refURL = $stateParams.ref;
-    
+    $rootScope.title = "Register";
     $scope.register = function (user) {
         if (user.password != user.password2 || !user.password || !user.password2) {
             alert("Your passwords don't match");

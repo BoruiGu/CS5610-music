@@ -1,9 +1,10 @@
-﻿app.controller("ArtistCtrl", function ($scope, $stateParams, API, Player, Playlist) {
+﻿app.controller("ArtistCtrl", function ($scope, $stateParams, API, Player, Playlist, $rootScope) {
     $scope.activeTag = 'toptrack'
     var id = $stateParams.id;
     API.getArtist(id, function (res) {
         $scope.artist = res;
         $scope.commentName = res.name;
+        $rootScope.title = res.name;
     });
 
     API.getArtistTopTracks(id, function (res) {

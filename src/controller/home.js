@@ -1,4 +1,6 @@
 ﻿app.controller("HomeCtrl", function ($scope, $rootScope, $timeout, Player) {
+    $rootScope.title = "MusicApp";
+
     /* Cross-tab Comm */
     $rootScope.appId = String(Math.random());
     console.log('appId: ' + $rootScope.appId);
@@ -29,4 +31,10 @@
             }
         }
     }, false);
+
+    /* check for title update */
+    $rootScope.$watch('title', function (newVal) {
+        /* update title */
+        $("title").html(newVal);
+    });
 });
