@@ -12,6 +12,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 .fixed-golden-ratio {
@@ -19,6 +20,7 @@
     top: 38.2%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 ::-webkit-scrollbar {
@@ -157,6 +159,7 @@ body {
        are always calculated against width */
         /*margin-top: -25%;*/
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
         left: 15px;
     }
 
@@ -164,6 +167,7 @@ body {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
         left: 60px;
     }
 
@@ -171,6 +175,7 @@ body {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
         left: 105px;
     }
 
@@ -180,6 +185,7 @@ body {
         right: 80px;
         top: 50%;
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
     }
 
     .playerWrap .btn-volume {
@@ -187,6 +193,7 @@ body {
         right: 60px;
         top: 50%;
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
     }
 
     .playerWrap .playlist {
@@ -194,6 +201,7 @@ body {
         right: 20px;
         top: 50%;
         transform: translate(0, -50%);
+        -webkit-transform: translate(0, -50%);
     }
 
         .playerWrap .playlist button {
@@ -240,6 +248,7 @@ body {
     height: 100px;
     top: -100px;
     transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
     background-color: rgba(0, 0, 0, 0.25);
 }
 
