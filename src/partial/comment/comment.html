@@ -8,7 +8,10 @@
         </form>
         <textarea class="form-control" rows="3" disabled ng-show="!currentUser"></textarea>
         <p ng-show="!currentUser">
-            please <a ng-click="setLoginFocus()" href="">sign in</a> to comment
+            please
+            <a class="hidden-xs" ng-click="setLoginFocus()" href="">sign in</a>
+            <a class="visible-xs-inline" id="commentSignInNote" ng-click="setLoginFocus()" href="">sign in</a>
+            to comment
         </p>
     </div>
     <p>Comments: </p>

@@ -22,6 +22,13 @@
     $scope.setLoginFocus = function () {
         $rootScope.$emit('setLoginFocus');        
     };
+
+    $(function () {
+        /* Click sign in @ comment on mobile, show nav bar collapse */
+        $("#commentSignInNote").click(function (event) {
+            $(".navbar-collapse").collapse('show');
+        });
+    });
 });
 
 function getComment(id, $scope, User) {

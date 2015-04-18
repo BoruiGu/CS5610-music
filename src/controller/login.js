@@ -49,7 +49,7 @@
         /* hide nav bar collapse after click on link */
         $("#my-navbar-collapse li a").click(function (event) {
             $(".navbar-collapse").collapse('hide');
-        });
+        });        
     });
 });
 
