@@ -160,7 +160,7 @@ body {
         /*margin-top: -25%;*/
         transform: translate(0, -50%);
         -webkit-transform: translate(0, -50%);
-        left: 15px;
+        left: 20px;
     }
 
     .playerWrap .btn-Play {
@@ -168,7 +168,7 @@ body {
         top: 50%;
         transform: translate(0, -50%);
         -webkit-transform: translate(0, -50%);
-        left: 60px;
+        left: 65px;
     }
 
     .playerWrap .btn-Next {
@@ -176,12 +176,12 @@ body {
         top: 50%;
         transform: translate(0, -50%);
         -webkit-transform: translate(0, -50%);
-        left: 105px;
+        left: 110px;
     }
 
     .playerWrap .bar-progress {
         position: absolute;
-        left: 145px;
+        left: 150px;
         right: 80px;
         top: 50%;
         transform: translate(0, -50%);
