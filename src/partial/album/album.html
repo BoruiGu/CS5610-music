@@ -1,13 +1,23 @@
 ﻿<div>
-    <img src="{{album.images[1].url | cover}}" alt="Album Cover">
-    <p>{{album.name}}</p>
-    Artist
-    <a href="#/artist/{{album.artists[0].id}}">
-        {{album.artists | artists}}
-    </a>
-    Release Date
-    <p>{{album.release_date}}</p>
-    <button ng-click="PlayAll()" class="btn btn-primary">Play All</button>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">                
+                <img class="media-object" src="{{album.images[1].url | cover}}" alt="Album Cover">
+            </a>
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">{{album.name}}</h2>
+            <h3>Artist</h3>
+            <a href="#/artist/{{album.artists[0].id}}">
+                {{album.artists | artists}}
+            </a>
+            <h3>Release Date</h3>
+            <p>{{album.release_date}}</p>
+            <hr />                        
+            <button ng-click="PlayAll()" class="btn btn-primary">Play All</button>
+        </div>
+    </div>            
+        
     <!-- Tracks -->
     <div ui-view="tracklist"></div>
     <!-- Comment -->

@@ -3,6 +3,14 @@
     display: inline;
 }
 
+.float-left {
+    float: left;
+}
+
+.table-hover tbody tr:hover{
+    background-color: rgba(0, 0, 0, 0.17);
+}
+
 .table-layout-fixed {
     table-layout: fixed;
 }
@@ -311,4 +319,13 @@ body {
     border-top: 1px solid #ccc;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.profile-follow-text {
+    line-height: 34px;
+    margin: auto;
+}
+
+.media {
+    margin-bottom: 15px;
 }

@@ -1,19 +1,21 @@
 ﻿<div>
-    User Profile {{user.username}}
-    <p>Following:</p>
-    <div class="following">
-        <div class="dropdown">
-            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                {{followingUsers.length}}
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li ng-repeat="user in followingUsers" role="presentation">
-                    <a role="menuitem" tabindex="-1" href="#/profile/{{user.uid}}">{{user.username}}</a>
-                </li>
-            </ul>
+    <h1>{{user.username}}</h1>
+    <div>
+        <p class="float-left profile-follow-text">Following:</p>
+        <div class="following">
+            <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    {{followingUsers.length}}
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="user in followingUsers" role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#/profile/{{user.uid}}">{{user.username}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    <p>Follower:</p>
+    <span class="float-left profile-follow-text">Followers:</span>
     <div class="followed">
         <div class="dropdown">
             <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">

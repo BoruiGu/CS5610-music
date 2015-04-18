@@ -1,20 +1,29 @@
 ﻿<div>
-    <img src="{{song.album.images[1].url | cover}}" alt="Album Cover">
-    <p>{{song.name}}</p>
-    Artist 
-    <p ng-repeat="artist in song.artists">
-        {{artist.name}}
-    </p>
-    Album
-    <p>{{song.album.name}}</p>
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" ng-click="play()" class="btn btn-success">Play</button>
-        <button type="button" ng-click="addToList()" class="btn btn-success">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" src="{{song.album.images[1].url | cover}}" alt="Album Cover">
+            </a>
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">{{song.name}}</h2>
+            <h3>Artist</h3>
+            <a href="#/artist/{{song.artists[0].id}}">
+                {{song.artists | artists}}
+            </a>
+            <h3>Album</h3>
+            <a href="#/album/{{song.album.id}}">{{song.album.name}}</a>
+            <hr />
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" ng-click="play()" class="btn btn-success">Play</button>
+                <button type="button" ng-click="addToList()" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <button ng-show="loggedin" ng-click="addToMyList()" class="btn btn-success">Add to MyList</button>
+        </div>
     </div>    
-    <button ng-show="loggedin" ng-click="addToMyList()" class="btn btn-success">Add to MyList</button>
-    <br />
+        
     <!-- Comment -->
     <div ui-view="comment"></div>
 </div>
