@@ -11,7 +11,7 @@
             alert("Invalid Username");
             return;
         }
-
+        user.username = user.username.toLowerCase();
         User.register(user, function (response) {
             console.log(response);
             if (response.username) {

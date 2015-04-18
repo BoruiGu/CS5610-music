@@ -7,6 +7,9 @@
     });
 
     $scope.login = function (user) {
+        /* Since mobile automatically capital first letter
+           For better UX, username is case-insensitive */
+        user.username = user.username.toLowerCase();
         User.login(user, function (response) {
             if (typeof response === 'number') {
                 /* Error in Log In */                
