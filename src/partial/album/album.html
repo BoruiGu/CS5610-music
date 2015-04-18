@@ -1,8 +1,8 @@
 ﻿<div>
-    <div class="media">
-        <div class="media-left">
+    <div class="media row">
+        <div class="media-left col-xs-3">
             <a href="#">                
-                <img class="media-object" src="{{album.images[1].url | cover}}" alt="Album Cover">
+                <img class="media-object img-responsive" src="{{album.images[1].url | cover}}" alt="Album Cover">
             </a>
         </div>
         <div class="media-body">
@@ -13,7 +13,7 @@
             </a>
             <h3>Release Date</h3>
             <p>{{album.release_date}}</p>
-            <hr />                        
+            <hr />
             <button ng-click="PlayAll()" class="btn btn-primary">Play All</button>
         </div>
     </div>            
