@@ -40,7 +40,14 @@
     $scope.blur = function () {
         $scope.focusLogin = false;
         $scope.loginClass = null;
-    }    
+    }
+
+    $(function () {
+        /* hide nav bar collapse after click on link */
+        $("#my-navbar-collapse li a").click(function (event) {
+            $(".navbar-collapse").collapse('hide');
+        });
+    });
 });
 
 function updateScopeLoggedin($scope, User) {

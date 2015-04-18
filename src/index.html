@@ -54,7 +54,7 @@
                     <li><a href="#/register">Register</a></li>
                 </ul>
                 <!-- Log In -->
-                <form ng-if="!loggedin" ng-submit="login(user)" class="navbar-form navbar-right">
+                <form ng-show="!loggedin" ng-submit="login(user)" class="navbar-form navbar-right">
                     <div ng-class="loginClass" class="form-group">
                         <input ng-model="user.username" ng-blur="blur()" focus-on="focusLogin" type="text" placeholder="Username" class="form-control">
                     </div>
@@ -64,7 +64,7 @@
                     <button type="submit" class="btn btn-success">Sign in</button>
                 </form>
                 <!-- Logged In -->
-                <ul ng-if="loggedin" class="nav navbar-nav navbar-right">
+                <ul ng-show="loggedin" class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#/profile">Profile</a></li>
                     <li><a href="" ng-click="logout()">Sign Out</a></li>
                 </ul>
