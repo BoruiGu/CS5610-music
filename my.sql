@@ -59,3 +59,6 @@ where uid in
 alter table mylist change content list varchar(65535);
 
 delete from user where username='tf4';
+
+DESCRIBE comment;
+SHOW CREATE TABLE mylist;
